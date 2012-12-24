@@ -3,9 +3,6 @@ from google.appengine.api import memcache
 from google.appengine.ext import db
 from google.appengine.ext import testbed
 
-class TestModel(db.Model):
-    pass
-
 class FooTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -15,7 +12,12 @@ class FooTestCase(unittest.TestCase):
         self.testbed.init_datastore_v3_stub()
         self.testbed.init_memcache_stub()
 
-        self.testapp = webtest.TestApp(webapp2.WSGIApplication([('/', )]))
+        import main
+        self.testapp = webtest.TestApp(main.app)
+
+    def testHello(self):
+        response = self.testapp.get('/')
+        print response
 
     def tearDown(self):
         self.testbed.deactivate()
