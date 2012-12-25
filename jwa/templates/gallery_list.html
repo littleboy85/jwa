@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block css %}
+  <link rel="stylesheet" href="/static/css/gallery_list.css"/>
+{% endblock %}
+
+{% block content %}
+<div id="gallery_list_content">
+  <ul>
+  {% for gallery in gallery_list %}
+    <li><a href="/gallery?_id={{ gallery.id }}">{{ gallery.title }}</a></li>
+  {% endfor %}
+  </ul>
+  <a href="/gallery" class="button">Create New Gallery</a>
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}
+

@@ -64,7 +64,8 @@ import unittest
 import time
 import logging
 import cgi
-import django.utils.simplejson
+# import django.utils.simplejson
+import json
 
 from google.appengine.ext import webapp
 from google.appengine.api import apiproxy_stub_map  
@@ -148,7 +149,7 @@ class JsonTestResult(unittest.TestResult):
             'failures': self._list(self.failures),
             }
 
-        stream.write(django.utils.simplejson.dumps(result).replace('},', '},\n'))
+        stream.write(json.dumps(result).replace('},', '},\n'))
 
     def _list(self, list):
         dict = []
@@ -272,7 +273,7 @@ def _test_suite_to_json(suite):
                 method_list = mod_dict[class_name]
                 method_list.append(method_name)
                 
-    return django.utils.simplejson.dumps(test_dict)
+    return json.dumps(test_dict)
 
 
 def _run_test_suite(runner, suite):
@@ -458,13 +459,19 @@ _MAIN_PAGE_CONTENT = """
 ##############################################################################
 
 
-application = webapp.WSGIApplication([('%s'      % _WEB_TEST_DIR, MainTestPageHandler),
-                                      ('%s/run'  % _WEB_TEST_DIR, JsonTestRunHandler),
-                                      ('%s/list' % _WEB_TEST_DIR, JsonTestListHandler)],
-                                      debug=True)
-
-def main():
-    run_wsgi_app(application)                                    
-
-if __name__ == '__main__':
-    main()
+# application = webapp.WSGIApplication([('%s'      % _WEB_TEST_DIR, MainTestPageHandler),
+#                                       ('%s/run'  % _WEB_TEST_DIR, JsonTestRunHandler),
+#                                       ('%s/list' % _WEB_TEST_DIR, JsonTestListHandler)],
+#                                       debug=True)
+# 
+# def main():
+#     run_wsgi_app(application)                                    
+# 
+# if __name__ == '__main__':
+#     main()
+# 
+routes = [
+    ('%s'      % _WEB_TEST_DIR, MainTestPageHandler),
+    ('%s/run'  % _WEB_TEST_DIR, JsonTestRunHandler),
+    ('%s/list' % _WEB_TEST_DIR, JsonTestListHandler)
+]

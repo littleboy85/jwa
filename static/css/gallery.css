@@ -1,0 +1,18 @@
+
+#gallery_content {
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.gallery_form>div {
+    padding: 5px;
+}
+
+.gallery_form>div>* {
+    vertical-align: top;
+}
+
+.gallery_form>div>label {
+    min-width: 80px;
+    display: inline-block;
+}

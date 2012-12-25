@@ -5,13 +5,12 @@ api_version: 1
 threadsafe: yes
 
 handlers:
-- url: /favicon\.ico
-  static_files: favicon.ico
-  upload: favicon\.ico
+- url: /static
+  static_dir: static
 
-- url: /test.*
-  login: admin
-  script: gaeunit.py
+- url: /favicon\.ico
+  static_files: static/image/favicon.ico
+  upload: static/image/favicon\.ico
 
 - url: .*
   script: main.app
@@ -21,3 +20,5 @@ libraries:
   version: "2.5.2"
 - name: jinja2
   version: latest
+- name: django
+  version: 1.3

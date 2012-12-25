@@ -14,29 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import cgi, webapp2, jinja2, os
-from google.appengine.api import users
+import os, sys, webapp2
+from jwa import settings, routes
 
-jinja_env = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(os.path.dirname(__name__)))
+if settings.DEBUG:
+    ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
+    sys.path.insert(0, os.path.join(
+        ROOT_PATH, 'venv', 'lib', 'python%s.%s' % sys.version_info[:2],
+        'site-packages'
+    ))
 
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
-        template = jinja_env.get_template('index.html')
-        self.response.write(template.render({
-            'submit': 'Sign Guestbook'
-        }))
-        user = users.get_current_user()
-        if user:
-            self.response.write('Hello ' + user.nickname())
-        else:
-            self.redirect(users.create_login_url(self.request.uri))
-
-    def post(self):
-        self.response.write(cgi.escape(self.request.get('content')))
-
-app = webapp2.WSGIApplication([
-    ('/', MainHandler)
-], debug=True)
-
-
+app = webapp2.WSGIApplication(routes=routes, debug=settings.DEBUG)
