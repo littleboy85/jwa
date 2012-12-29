@@ -55,4 +55,23 @@ class GalleryHandler(BaseHandler):
                 'form': form
             })
 
+class HomeHandler(BaseHandler):
+    def get(self):
+        self.render_to_template('home.html')
 
+class ShowPorfolioHandler(BaseHandler):
+    def get(self):
+        self.render_to_template('showporfolio.html')
+class PorfolioHandler(BaseHandler):
+    def get(self):
+        self.render_to_template('porfolio.html')
+class ContactHandler(BaseHandler):
+    def get(self):
+        self.render_to_template('contact.html')    
+        
+class EventHandler(BaseHandler):
+    def get(self):
+        self.render_to_template('event.html')        
+class PriceHandler(BaseHandler):
+    def get(self):
+        self.render_to_template('price.html')        

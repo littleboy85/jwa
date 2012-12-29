@@ -10,22 +10,49 @@
     {% endblock %}
   </head>
   <body>
+<div id="container">
+    <div id="top_outline"></div>
+    
+    <div id="middle_outline">
+    
     <div id="header">
-      <h1>this is global header</h1>
-    </div>
-    <div id="content">
-      <h1>this is global content</h1>
+    
+    <div id="nav_container">
+    <ul id="nav">
+        <li id="selected"><a href="home"><img src="../../static/image/home.png"></a></li>
+        <li><a href="porfolio"><img src="../../static/image/porfolio.png"></a></li>
+        <li><a href="event"><img src="../../static/image/events.png"></a></li>
+        <li><a href="price"><img src="../../static/image/prices-and-ordering.png"></a></li>
+        <li><a href="contact"><img src="../../static/image/contact.png"></a></li>
+    </ul>
+   </div><!--end nav_container--->
+<div id="header_title"></div>
+   </div><!--end header-->
+    
+
+   
+   
+    
+       
       {% block content %}
       {% endblock %}
-    </div>
+  
+    
     <div id="footer">
-      <h1>this is global footer</h1>
+      this is global footer
     </div>
+    </div><!--end middle_outline-->
+    
+    <div id="bottom_outline"></div>
+    
+</div>
     <script src="/static/js/jquery-1.8.3.js"></script>
     <script src="/static/js/jquery-ui-1.9.2.custom.js"></script>
+    <script src="static/js/jquery.spasticNav.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){
         $('.button').button();
+         $('#nav').spasticNav();
       });
     </script>
     {% block script %}
