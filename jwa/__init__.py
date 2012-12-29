@@ -3,10 +3,10 @@ from jwa import settings, handlers
 
 routes = [
     ('/', handlers.HomeHandler),
-    ('/gallery', handlers.GalleryHandler),
+    ('/porfolio', handlers.GalleryHandler),
+    ('/picture_edit', handlers.PictureEditHandler),
+    ('/gallery_edit', handlers.GalleryEditHandler),
     ('/home',handlers.HomeHandler),
-    ('/showporfolio',handlers.ShowPorfolioHandler),
-    ('/porfolio',handlers.PorfolioHandler),
     ('/event',handlers.EventHandler),
     ('/contact',handlers.ContactHandler),
     ('/price',handlers.PriceHandler),
