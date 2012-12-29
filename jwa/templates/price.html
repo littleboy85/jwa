@@ -5,39 +5,20 @@
 {% endblock %}
 
 {% block content %}
-<div id="home_container">
-		<div id="example">
-			<div id="slides">
-				<div class="slides_container">
-					<a href=""><img src="../../static/image/slide1.jpg" width="700" height="350" alt="Picture 1"></a>
-					<a href=""><img src="../../static/image/slide2.jpg" width="700" height="350" alt="Picture 2"></a>
-					<a href=""><img src="../../static/image/slide3.jpg" width="700" height="350" alt="Picture 3"></a>
-					<a href=""><img src="../../static/image/slide4.jpg" width="700" height="350" alt="Picture 4"></a>
-					<a href=""><img src="../../static/image/slide5.jpg" width="700" height="350" alt="Picture 5"></a>
-					
-
-				</div>
-				<a href="#" class="prev"><img src="../../static/image/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
-				<a href="#" class="next"><img src="../../static/image/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
-			</div>
-			<img src="../../static/image/frame.png" alt="Example Frame" id="frame">
-		</div>
+<div id="price_container">
 		
 	</div>
 {% endblock %}
 
 {% block script %}
 <script src="../../static/js/slides.min.jquery.js"></script>
+	
 	<script>
 		$(function(){
-			$('#slides').slides({
-				preload: true,
-				preloadImage: '../../static/image/loading.gif',
-				play: 5000,
-				pause: 2500,
-				hoverPause: true
+		 $('.selected', nav).removeClass('selected');
+         $('li',nav).eq(3).addClass('selected');
 			});
-		});
+	
 	</script>
 {% endblock %}
 

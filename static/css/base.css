@@ -75,7 +75,7 @@ ul, li {
 }
 
 #blob {
-   background-image:url('../../static/image/selected.png');
+   background: url('../../static/image/selected.png') no-repeat;
    width:101px;
    height:57px;
     position: absolute;

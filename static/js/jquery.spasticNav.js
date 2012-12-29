@@ -5,29 +5,23 @@
 		options = $.extend({
 			overlap : 20,
 			speed : 500,
-			reset : 1500,
+			reset : 100,
 			color : '#0b2b61',
 			easing : 'easeOutExpo'
 		}, options);
-	
+	    
 		return this.each(function() {
 		
 		 	var nav = $(this),
-		 		currentPageItem = $('#selected', nav),
 		 		blob,
 		 		reset;
 		 		
 		 	$('<li id="blob"></li>').css({
-		 		
-		 		left : currentPageItem.position().left,
-		 		top : currentPageItem.position().top - options.overlap / 2,
-		 		
-		 		
+		 		left : $('.selected', nav).position().left,
+		 		top : $('.selected', nav).position().top - options.overlap / 2		 		
 		 	}).appendTo(this);
 		 	
-		
-		 	
-		 	blob = $('#blob', nav);
+		 	blob = $('#blob', nav);		 	
 		 	
 			$('li:not(#blob)', nav).hover(function() {
 				// mouse over
@@ -47,8 +41,8 @@
 				// mouse out	
 				reset = setTimeout(function() {
 					blob.animate({
-						width : currentPageItem.outerWidth(),
-						left : currentPageItem.position().left
+						width : $('.selected', nav).outerWidth(),
+						left : $('.selected', nav).position().left
 					}, options.speed)
 				}, options.reset);
 	

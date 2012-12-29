@@ -48,8 +48,7 @@ class PriceHandler(BaseHandler):
 class GalleryHandler(BaseHandler):
 
     def get(self):
-        self.render_to_template('showporfolio.html')
-
+        self.render_to_template('porfolio.html')
 
 class FormHandler(BaseHandler):
     
