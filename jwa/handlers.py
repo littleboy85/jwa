@@ -59,9 +59,7 @@ class HomeHandler(BaseHandler):
     def get(self):
         self.render_to_template('home.html')
 
-class ShowPorfolioHandler(BaseHandler):
-    def get(self):
-        self.render_to_template('showporfolio.html')
+
 class PorfolioHandler(BaseHandler):
     def get(self):
         self.render_to_template('porfolio.html')
