@@ -33,7 +33,7 @@ background: url(../image/outline_middle.png) 50% 0 repeat-y;
 }
 
 #header{
-margin: 0;
+margin-bottom: 22px;
 padding: 0;
 width:960px;
 height:145px;
