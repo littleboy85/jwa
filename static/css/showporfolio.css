@@ -8,13 +8,36 @@
  * Demo and documentation: http://coffeescripter.com/code/ad-gallery/
  */
  
+ #porfolio_nav_container{
+ clear:both;
+ vertical-align:top;
+ display:inline-block;
+ width:150px;
+ margin-left:10px;
+ border:solid red 1px;
+ }
+.ad-nav{
+width:130px;
+margin-left:auto;
+margin-right:auto;
+
+} 
+ .nav-title{
+ text-align:center;
+ font-size:15px;
+ color:#3399CC;
+ 
+ 
+ }
+ 
+ 
  #showporfolio_container{
  width:600px;
  height:500px;
  position:relative;
-margin-left:auto;
-margin-right:auto;
-top:22px;
+ margin-left:60px;
+
+display:inline-block;
  
  
  }
