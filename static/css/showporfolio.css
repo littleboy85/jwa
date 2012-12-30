@@ -25,12 +25,15 @@ margin-right:auto;
  .nav-title{
  text-align:center;
  font-size:15px;
- color:#3399CC;
- 
- 
+ color:#3399CC; 
  }
  
- 
+ul
+{
+list-style-type: none;
+padding: 0px;
+margin: 0px;
+} 
  #showporfolio_container{
  width:600px;
  height:500px;
