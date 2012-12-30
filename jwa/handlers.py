@@ -1,5 +1,5 @@
 import cgi, webapp2, jinja2
-from google.appengine.api import users
+from google.appengine.api import users, images
 from jwa import forms, settings 
 from jwa.models import Gallery, Picture
 
@@ -45,10 +45,23 @@ class PriceHandler(BaseHandler):
     def get(self):
         self.render_to_template('price.html')        
 
+class PictureHandler(BaseHandler):
+    def get(self):
+        id = self.request.get('_id')
+        type = self.request.get('type')
+        picture = Picture.get_by_id(int(id))
+        self.response.headers['Content-Type'] = 'image/jpeg'
+        self.response.write(picture.image)
+
 class GalleryHandler(BaseHandler):
 
     def get(self):
-        self.render_to_template('porfolio.html')
+        id = self.request.get('_id')
+        gallery = Gallery.get_by_id(int(id))
+        self.render_to_template('porfolio.html', {
+            'gallery_list': Gallery.all(),
+            'gallery': gallery,
+        })
 
 class FormHandler(BaseHandler):
     
@@ -72,7 +85,7 @@ class FormHandler(BaseHandler):
 
     @login_required
     def post(self):
-        form = self.form_cls(self.request.POST)
+        form = self.form_cls(self.request)
         if form.is_valid():
             obj = form.save()
             self.redirect(self.get_redirect(obj))
@@ -96,9 +109,8 @@ class PictureEditHandler(FormHandler):
         gallery_id = self.request.get('gallery_id')
         if not gallery_id:
             self.abort(404)
-        gallery = Gallery.get_by_id(int(gallery_id))
-        if gallery:
-            return {'gallery': gallery}
-        else:
-            self.abort(404) # TODO: create a better 404 page
+        return {'gallery_id': gallery_id}
+
+    def get_redirect(self, obj):
+        return '/porfolio?_id=%s&picture_id=%s' % (obj.gallery.id, obj.id)
 

@@ -108,6 +108,10 @@ ul, li {
 
 }
 
+.ad-thumb-list>li.picture img {
+    height: 60px;
+}
+
 #footer {
     height:30px;
     width: 100%;
@@ -115,3 +119,5 @@ ul, li {
     font-size: 12px;
     text-align:center;
 }
+
+

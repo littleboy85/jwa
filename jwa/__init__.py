@@ -4,6 +4,7 @@ from jwa import settings, handlers
 routes = [
     ('/', handlers.HomeHandler),
     ('/porfolio', handlers.GalleryHandler),
+    ('/picture', handlers.PictureHandler),
     ('/picture_edit', handlers.PictureEditHandler),
     ('/gallery_edit', handlers.GalleryEditHandler),
     ('/home',handlers.HomeHandler),

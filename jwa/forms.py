@@ -10,12 +10,12 @@ class Form(object):
             self.instance = data
         else:
             for field in self.field_names:
-                if data.has_key(field):
-                    self.fields[field] = data[field]
+                value = data.get(field)
+                if value != None:
+                    self.fields[field] = value
 
     def is_valid(self):
         self.errors = {}
-        self.cleaned_data = self.fields.copy()
         return len(self.errors) == 0
 
     def save(self):
@@ -30,6 +30,7 @@ class GalleryForm(Form):
 
     def is_valid(self):
         is_valid = super(GalleryForm, self).is_valid()
+        self.cleaned_data = self.fields.copy()
         title = self.cleaned_data.get('title')
         if not title:
             self.errors['title'] = 'This field is required'
@@ -37,16 +38,23 @@ class GalleryForm(Form):
 
 class PictureForm(Form):
     model = Picture
-    field_names = ['title', 'author', 'gallery'] 
+    field_names = ['title', 'author', 'gallery_id', 'image'] 
 
     def is_valid(self):
         is_valid = super(PictureForm, self).is_valid()
-        gallery_id = self.cleaned_data.get('gallery')
+        self.cleaned_data = self.fields.copy()
+        gallery_id = self.cleaned_data.get('gallery_id')
         gallery = Gallery.get_by_id(int(gallery_id))
         if gallery:
             self.cleaned_data['gallery'] = gallery
         else:
             self.errors['gallery'] = 'Can not find the porfolio'
+        del self.cleaned_data['gallery_id']
+        image = self.cleaned_data.get('image')
+        if image == None:
+            self.errors['image'] = 'Please upload an image'
+        else:
+            self.cleaned_data['image'] = image
         return len(self.errors) == 0
 
   

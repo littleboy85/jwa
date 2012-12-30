@@ -1,15 +1,20 @@
 from google.appengine.ext import db
+from google.appengine.api import images
 
-class Gallery(db.Model):
-    title = db.StringProperty(required=True)
-    description = db.TextProperty()
-
+class BaseModel(object):
     @property
     def id(self):
         return self.key().id()
 
-class Picture(db.Model):
-    gallery = db.ReferenceProperty(Gallery, required=True)
+class Gallery(db.Model, BaseModel):
+    title = db.StringProperty(required=True)
+    description = db.TextProperty()
+
+class Picture(db.Model, BaseModel):
+    gallery = db.ReferenceProperty(
+        Gallery, required=True, collection_name='pictures'
+    )
+    image = db.BlobProperty()
     title = db.StringProperty(required=True)
     # put author here for simplicity, maybe can move to it's own table
     author = db.StringProperty()
@@ -23,10 +28,12 @@ class Picture(db.Model):
     create_date = db.DateTimeProperty(auto_now_add=True)
     update_date = db.DateTimeProperty(auto_now=True)
 
-    def __init__(self, price=None, *args, **kwargs):
+    def __init__(self, price=None, image=None, *args, **kwargs):
         if price != None:
             kwargs['_price_by_cent'] = int(price * 100)
-        super(Picture, self).__init__(*args, **kwargs)
+        if image != None:
+            image = db.Blob(str(image))
+        super(Picture, self).__init__(*args, image=image, **kwargs)
 
     @property
     def price(self):
@@ -37,5 +44,4 @@ class Picture(db.Model):
     @price.setter
     def price(self, value):
         self._price_by_cent = value * 100
-
 

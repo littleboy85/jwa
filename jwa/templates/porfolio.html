@@ -16,10 +16,10 @@
       <div class="ad-nav">
         <div class="ad-thumbs">
           <ul class="ad-thumb-list">
-          {% for picture in picture_list %}
+          {% for picture in gallery.pictures %}
           <li class="picture">
             <a href="/picture?_id={{ picture.id }}">
-              <img src="/thumb?_id={{ picture.thumb.id }}" 
+              <img src="/picture?_id={{ picture.id }}&type=thumb" 
                 alt="image not load correctly" 
               />
             </a>
