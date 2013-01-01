@@ -9,6 +9,14 @@ class BaseModel(object):
 class Gallery(db.Model, BaseModel):
     title = db.StringProperty(required=True)
     description = db.TextProperty()
+    icon_picture = db.ReferenceProperty()
+
+    @property
+    def icon(self):
+        if self.icon_picture:
+            return self.icon_picture
+        else:
+            return self.pictures.get()
 
 class Picture(db.Model, BaseModel):
     gallery = db.ReferenceProperty(

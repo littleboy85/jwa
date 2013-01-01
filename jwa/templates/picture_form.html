@@ -21,6 +21,10 @@
     <input type="text" name="author" value="{{ form.fields.author }}"/>
   </div>
   <div>
+    <input type="checkbox" name="gallery_icon" value="true"/>
+    Use as porfolio icon
+  </div>
+  <div>
     {% if 'image' in form.errors %}
       <div class="error">{{ form.errors.image }}</div> 
     {% endif %}

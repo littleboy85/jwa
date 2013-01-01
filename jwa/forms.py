@@ -41,11 +41,12 @@ class GalleryForm(Form):
         title = self.cleaned_data.get('title')
         if not title:
             self.errors['title'] = 'This field is required'
+
         return len(self.errors) == 0
 
 class PictureForm(Form):
     model = Picture
-    field_names = ['title', 'author', 'gallery_id', 'image'] 
+    field_names = ['title', 'author', 'gallery_id', 'image', 'gallery_icon'] 
 
     def is_valid(self):
         is_valid = super(PictureForm, self).is_valid()
@@ -66,7 +67,18 @@ class PictureForm(Form):
             self.errors['image'] = 'Please upload an image'
         else:
             self.cleaned_data['image'] = image
+
         return len(self.errors) == 0
+
+    def save(self):
+        gallery_icon = self.cleaned_data['gallery_icon']
+        del self.cleaned_data['gallery_icon']
+        instance = super(PictureForm, self).save()
+        if gallery_icon:
+            instance.gallery.icon_picture = instance
+            instance.gallery.put()
+        return instance
+
 
   
 
