@@ -39,6 +39,15 @@ class PriceHandler(BaseHandler):
     def get(self):
         self.render_to_template('price.html')        
 
+class LoginHandler(BaseHandler):
+
+    @login_required
+    def get(self):
+        if users.is_current_user_admin():
+            self.redirect('/porfolio')
+        else:
+            self.redirect(users.create_logout_url(self.request.uri))
+            
 class PictureHandler(BaseHandler):
     def get(self):
         id = self.request.get('_id')
@@ -55,6 +64,7 @@ class GalleryHandler(BaseHandler):
         self.render_to_template('porfolio.html', {
             'gallery_list': Gallery.all(),
             'gallery': gallery,
+            'admin': users.is_current_user_admin(),
         })
 
 class FormHandler(BaseHandler):

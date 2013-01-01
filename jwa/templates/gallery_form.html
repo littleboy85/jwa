@@ -22,7 +22,13 @@
       <input type="hidden" name="_id" value="{{ form.instance.id }}"/>
     {% endif %}
     <div>
-      <a href="/" class="button">back</a>
+      <a href=
+        {% if form.instance %}
+          "/porfolio?_id={{ form.instance.id }}" 
+        {% else %}
+          "/porfolio" 
+        {% endif %}
+        class="button">back</a>
       <input type="submit" class="button"
         value="{% if form.instance %}Edit{% else %}Create{% endif %}"/>
     </div>

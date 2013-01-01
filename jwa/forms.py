@@ -13,6 +13,9 @@ class Form(object):
                 value = data.get(field)
                 if value != None:
                     self.fields[field] = value
+            id = data.get('_id')
+            if id != None:
+                self.instance = self.model.get_by_id(int(id))
 
     def is_valid(self):
         self.errors = {}
@@ -20,9 +23,13 @@ class Form(object):
 
     def save(self):
         cleaned_data = self.cleaned_data
-        obj = self.model(**cleaned_data)
-        obj.put()
-        return obj
+        if not hasattr(self, 'instance'):
+            self.instance = self.model(**cleaned_data)
+        else:
+            for field in cleaned_data:
+                setattr(self.instance, field, cleaned_data[field])
+        self.instance.put()
+        return self.instance
 
 class GalleryForm(Form):
     model = Gallery

@@ -7,86 +7,89 @@
 {% block content %}
 
 <div id="porfolio_nav_container">
-<div class="ad-nav">
-  <ul class="ad-na-list">
-    {% for gallery in gallery_list %}
-    <li class="nav_thumb">
-      <a href="">
-        <img src="../../static/image/contact.png" 
-          alt="image not load correctly" class="icon"
-        />
-        <div class="nav-title">{{ gallery.title }}</div>
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
-</div><!--end ad-nav-->
+  <div class="ad-nav">
+    <ul class="ad-na-list">
+      {% for gallery in gallery_list %}
+      <li class="nav_thumb">
+      <a href="/porfolio?_id={{ gallery.id }}">
+          <img src="../../static/image/contact.png" 
+            alt="image not load correctly" class="icon"
+          />
+          <div class="nav-title">{{ gallery.title }}</div>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div><!--end ad-nav-->
 </div>
 
-
-
-
-
- <div id="showporfolio_container">
-   
-
-    <div id="gallery" class="ad-gallery">
-      <div class="ad-image-wrapper">
-      </div>
-      <div class="ad-controls">
-      </div>
-      <div class="ad-nav">
-        <div class="ad-thumbs">
-          <ul class="ad-thumb-list">
-          {% for picture in gallery.pictures %}
-          <li class="picture">
-            <a href="/picture?_id={{ picture.id }}">
-              <img src="/picture?_id={{ picture.id }}&type=thumb" 
-                alt="image not load correctly" 
-              />
-            </a>
-            <div class="picture_data" style="display:none;">
-              {% if picture.title %}
-              <h1>{{ picture.title }}</h1> 
+<div id="showporfolio_container">
+  
+  <div id="gallery" class="ad-gallery">
+    <div class="ad-image-wrapper"></div>
+    <div class="ad-controls"></div>
+    <div class="ad-nav">
+      <div class="ad-thumbs">
+        <ul class="ad-thumb-list">
+        {% for picture in gallery.pictures %}
+        <li class="picture">
+          <a href="/picture?_id={{ picture.id }}">
+            <img src="/picture?_id={{ picture.id }}&type=thumb" 
+              alt="image not load correctly" 
+            />
+          </a>
+          <div class="picture_data" style="display:none;">
+            {% if picture.title %}
+            <h1>{{ picture.title }}</h1> 
+            {% endif %}
+            <div class="left_col">
+              {% if picture.author %}
+              <div>{{ picture.author }}</div>
               {% endif %}
-              <div class="left_col">
-                {% if picture.author %}
-                <div>{{ picture.author }}</div>
-                {% endif %}
-                {% if picture.width %}
-                <div>{{ picture.width }}'' x {{picture.height}}''</div>
-                {% endif %}
-                {% if picture.media %}
-                <div>{{ picture.media }}</div>
-                {% endif %}
-              </div>
-              <div class="right_col">
-                {% if picture.price %}
-                <div>
-                  <label>Price: </label>
-                  <span>${{ picture.price }}</span>
-                </div>
-                {% endif %}
-                {% if picture.original_available %}
-                <div>
-                  <strong>Original Still Available</strong> Contact 
-                  <a href="mailto:info@janetwilliamsart.ca">Janet</a>
-                </div>
-                {% endif %}
-                {% if picture.description %}
-                <div>{{ picture.description }}</div>
-                {% endif %}
-              </div>
+              {% if picture.width %}
+              <div>{{ picture.width }}'' x {{picture.height}}''</div>
+              {% endif %}
+              {% if picture.media %}
+              <div>{{ picture.media }}</div>
+              {% endif %}
             </div>
-          </li>
-          {% endfor %}
-     
-          </ul>
-        </div>
+            <div class="right_col">
+              {% if picture.price %}
+              <div>
+                <label>Price: </label>
+                <span>${{ picture.price }}</span>
+              </div>
+              {% endif %}
+              {% if picture.original_available %}
+              <div>
+                <strong>Original Still Available</strong> Contact 
+                <a href="mailto:info@janetwilliamsart.ca">Janet</a>
+              </div>
+              {% endif %}
+              {% if picture.description %}
+              <div>{{ picture.description }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+
+        </ul>
       </div>
     </div>
-
+  </div> <!-- end gallery -->
+</div>
+{% if admin %}
+  <div>
+    <a href="/gallery_edit" class="button">Add New Porfolio</a>
+    <a href="/gallery_edit?_id={{ gallery.id }}" 
+      class="button">Edit Current Porfolio</a>
+    <a href="/picture_edit?gallery_id={{ gallery.id }}" 
+      class="button">Add New Image</a>
   </div>
+{% endif %}
+
+
 {% endblock %}
 
 {% block script %}

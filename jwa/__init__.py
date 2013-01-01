@@ -7,10 +7,11 @@ routes = [
     ('/picture', handlers.PictureHandler),
     ('/picture_edit', handlers.PictureEditHandler),
     ('/gallery_edit', handlers.GalleryEditHandler),
-    ('/home',handlers.HomeHandler),
-    ('/event',handlers.EventHandler),
-    ('/contact',handlers.ContactHandler),
-    ('/price',handlers.PriceHandler),
+    ('/home', handlers.HomeHandler),
+    ('/event', handlers.EventHandler),
+    ('/contact', handlers.ContactHandler),
+    ('/price', handlers.PriceHandler),
+    ('/admin', handlers.LoginHandler),
 ]
 
 if settings.DEBUG:
