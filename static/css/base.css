@@ -51,6 +51,10 @@ height:145px;
    border-top-right-radius: 13px;
 }
 
+#header .auth {
+    text-align: right;
+}
+
 #nav_container{
    width: 800px;
 display: inline;

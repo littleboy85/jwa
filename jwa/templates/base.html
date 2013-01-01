@@ -32,6 +32,11 @@
             </ul>
           </div><!--end nav_container--->
           <div id="header_title"></div>
+          {% if admin %}
+          <div class="auth">
+            <a href="{{ logout_url }}">logout</a>
+          </div>
+          {% endif %}
         </div><!--end header-->     
 
         {% block content %}

@@ -11,6 +11,8 @@ class BaseHandler(webapp2.RequestHandler):
 
     def render_to_template(self, template_name, context={}, status=200):
         template = jinja_env.get_template(template_name)
+        context['admin'] = users.is_current_user_admin()
+        context['logout_url'] = users.create_logout_url(self.request.uri)
         self.response.write(template.render(context))
         self.response.set_status(status)
 
@@ -47,7 +49,7 @@ class LoginHandler(BaseHandler):
             self.redirect('/porfolio')
         else:
             self.redirect(users.create_logout_url(self.request.uri))
-            
+
 class PictureHandler(BaseHandler):
     def get(self):
         id = self.request.get('_id')
@@ -64,7 +66,6 @@ class GalleryHandler(BaseHandler):
         self.render_to_template('porfolio.html', {
             'gallery_list': Gallery.all(),
             'gallery': gallery,
-            'admin': users.is_current_user_admin(),
         })
 
 class FormHandler(BaseHandler):
