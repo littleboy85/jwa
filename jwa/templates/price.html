@@ -1,24 +1,29 @@
 {% extends "base.html" %}
 
 {% block css %}
-  <link rel="stylesheet" href="/static/css/home.css"/>
+  <link rel="stylesheet" href="/static/css/price.css"/>
 {% endblock %}
 
 {% block content %}
 <div id="price_container">
-		
+ <div class="price-container">
+	  <div class="price-title"><img src="../../static/image/pricesandordering.png"></div>
+	  <div class="price-content">
+	
+	
+	  </div>
+	  
+	  </div>		
 	</div>
-{% endblock %}
+{% endblock %}	
 
 {% block script %}
 <script src="../../static/js/slides.min.jquery.js"></script>
-	
 	<script>
 		$(function(){
 		 $('.selected', nav).removeClass('selected');
-         $('li',nav).eq(3).addClass('selected');
+         $('li',nav).eq(4).addClass('selected');
 			});
-	
 	</script>
 {% endblock %}
 

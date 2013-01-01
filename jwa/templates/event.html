@@ -1,12 +1,19 @@
 {% extends "base.html" %}
 
 {% block css %}
-  <link rel="stylesheet" href="/static/css/home.css"/>
+  <link rel="stylesheet" href="/static/css/event.css"/>
 {% endblock %}
 
 {% block content %}
 <div id="event_container">
-		
+ <div class="event-container">
+	  <div class="event-title"><img src="../../static/image/upcomingevents.png"></div>
+	  <div class="event-content">
+	
+	
+	  </div>
+	  
+	  </div>		
 	</div>
 {% endblock %}
 
@@ -15,7 +22,7 @@
 	<script>
 		$(function(){
 		 $('.selected', nav).removeClass('selected');
-         $('li',nav).eq(2).addClass('selected');
+         $('li',nav).eq(4).addClass('selected');
 			});
 	</script>
 {% endblock %}

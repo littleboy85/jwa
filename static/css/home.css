@@ -5,7 +5,6 @@ padding: 10px;
 margin: 0 auto;
 position: relative;
 z-index: 0;
-
 height: 440px;
 }
 
@@ -117,4 +116,30 @@ top: 10px;
 }
 
 
+.me-container{
 
+margin-left:auto;
+margin-right:auto;
+margin-top:15px;
+width:800px;
+
+}
+
+.me-title{
+padding:0px;
+margin-left: -6px;
+margin-right:-5.9px;	
+margin:bottom:0px;
+height:40px;
+}
+
+.me-content{
+
+margin: 0 -15px;
+padding-left:35px;
+padding-right:35px;
+padding-top:20px;
+padding-bottom:20px;
+background: url(../image/aboutmemiddle.png) 50% 0 repeat-y;
+
+}
