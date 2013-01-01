@@ -45,3 +45,6 @@ class Picture(db.Model, BaseModel):
     def price(self, value):
         self._price_by_cent = value * 100
 
+    @property
+    def gallery_id(self):
+        return self.gallery.id

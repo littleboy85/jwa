@@ -3,7 +3,7 @@ from jwa.models import Gallery, Picture
 class Form(object):
     def __init__(self, data={}):
         self.fields = {}
-        if isinstance(data, Gallery):
+        if isinstance(data, self.model):
             for field in self.field_names:
                 if hasattr(data, field):
                     self.fields[field] = getattr(data, field)
@@ -57,6 +57,7 @@ class PictureForm(Form):
         else:
             self.errors['gallery'] = 'Can not find the porfolio'
         del self.cleaned_data['gallery_id']
+        
         image = self.cleaned_data.get('image')
         if image == None:
             self.errors['image'] = 'Please upload an image'

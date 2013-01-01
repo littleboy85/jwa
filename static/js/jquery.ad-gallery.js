@@ -264,7 +264,7 @@
       var context = this;
       this.images = [];
       var thumbs_loaded = 0;
-      var thumbs = this.thumbs_wrapper.find('a');
+      var thumbs = this.thumbs_wrapper.find('a.image');
       var thumb_count = thumbs.length;
       if(this.settings.thumb_opacity < 1) {
         thumbs.find('img').css('opacity', this.settings.thumb_opacity);
@@ -386,7 +386,7 @@
         var id = window.location.hash.replace(/^#ad-image-/g, '');
         var thumb = this.thumbs_wrapper.find("#"+ id);
         if(thumb.length) {
-          return this.thumbs_wrapper.find("a").index(thumb);
+          return this.thumbs_wrapper.find("a.image").index(thumb);
         } else if(!isNaN(parseInt(id, 10))) {
           return parseInt(id, 10);
         };
@@ -405,7 +405,7 @@
       thumb_link.remove();
       this._setThumbListWidth(this.thumbs_wrapper_width);
       this.gallery_info.html((this.current_index + 1) +' / '+ this.images.length);
-      this.thumbs_wrapper.find('a').each(
+      this.thumbs_wrapper.find('a.image').each(
         function(i) {
           $(this).data("ad-i", i);
         }
@@ -423,13 +423,13 @@
       image_id = image_id || "";
       title = title || "";
       description = description || "";
-      var li = $('<li><a href="'+ image_url +'" id="'+ image_id +'">' +
+      var li = $('<li><a href="'+ image_url +'" id="'+ image_id +'" class="image">' +
                    '<img src="'+ thumb_url +'" title="'+ title +'" alt="'+ description +'">' +
                  '</a></li>');
       var context = this;
       this.thumbs_wrapper.find("ul").append(li);
       
-      var link = li.find("a");
+      var link = li.find("a.image");
       var thumb = link.find("img");
       thumb.css('opacity', this.settings.thumb_opacity);
       
@@ -623,9 +623,9 @@
         };
         var desc = '';
         if(image.desc.length) {
-          desc = '<span>'+ image.desc +'</span>';
+          desc = '<div>'+ image.desc +'</div>';
         };
-        desc = $('<p class="ad-image-description">'+ title + desc +'</p>');
+        desc = $('<div class="ad-image-description">'+ title + desc +'</div>');
       };
       return desc;
     },
