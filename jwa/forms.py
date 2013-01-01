@@ -59,7 +59,10 @@ class PictureForm(Form):
         del self.cleaned_data['gallery_id']
         
         image = self.cleaned_data.get('image')
-        if image == None:
+        if image == None or len(image) == 0:
+            if hasattr(self, 'instance'):
+                image = self.instance.image
+        if len(image) == 0:
             self.errors['image'] = 'Please upload an image'
         else:
             self.cleaned_data['image'] = image

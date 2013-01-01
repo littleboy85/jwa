@@ -25,7 +25,20 @@
       <div class="error">{{ form.errors.image }}</div> 
     {% endif %}
     <label for="image">Image: </label>
-    <input type="file" name="image" />
+    {% if form.instance and form.instance.image %}
+      <div>
+        <div>
+          <label>Currently: </label>
+          <a href="/picture?_id={{ form.instance.id }}">image</a>
+        </div>
+        <div>
+          <label>Change: </label>
+          <input type="file" name="image"/>
+        </div>
+      </div>
+    {% else %}
+      <input type="file" name="image"/>
+    {% endif %}
   </div>
   <input type="hidden" name="gallery_id" value="{{ form.fields.gallery_id }}"/>
   {% if form.instance %}
