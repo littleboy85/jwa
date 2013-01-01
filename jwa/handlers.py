@@ -24,12 +24,6 @@ def login_required(func):
             self.redirect(users.create_login_url(self.request.uri))
     return _wrapped_view
 
-class GalleryListHandler(BaseHandler):
-    def get(self):
-        self.render_to_template('gallery_list.html', {
-            'gallery_list': Gallery.all()
-        })
-
 class HomeHandler(BaseHandler):
     def get(self):
         self.render_to_template('home.html')
@@ -56,7 +50,7 @@ class PictureHandler(BaseHandler):
 class GalleryHandler(BaseHandler):
 
     def get(self):
-        id = self.request.get('_id')
+        id = self.request.get('_id', '1')
         gallery = Gallery.get_by_id(int(id))
         self.render_to_template('porfolio.html', {
             'gallery_list': Gallery.all(),
