@@ -96,13 +96,9 @@
 <script src="../../static/js/jquery.ad-gallery.js"></script>
 <script type="text/javascript">
   $(function() {
-  $('.selected', nav).removeClass('selected');
-  $('li',nav).eq(1).addClass('selected');
-    
-    $('img.image1').data('ad-desc', 'Whoa! This description is set through elm.data("ad-desc") instead of using the longdesc attribute.<br>And it contains <strong>H</strong>ow <strong>T</strong>o <strong>M</strong>eet <strong>L</strong>adies... <em>What?</em> That aint what HTML stands for? Man...');
-    $('img.image1').data('ad-title', 'Title through $.data');
-    $('img.image2').data('ad-desc', 'This image is wider than the wrapper, so it has been scaled down');
-    $('img.image3').data('ad-desc', 'This image is higher than the wrapper, so it has been scaled down');
+    $('.selected', nav).removeClass('selected');
+    $('li',nav).eq(1).addClass('selected');
+      
     var galleries = $('.ad-gallery').adGallery();
     
     $('#switch-effect').change(

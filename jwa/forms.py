@@ -14,7 +14,7 @@ class Form(object):
                 if value != None:
                     self.fields[field] = value
             id = data.get('_id')
-            if id != None:
+            if id:
                 self.instance = self.model.get_by_id(int(id))
 
     def is_valid(self):
