@@ -9,24 +9,17 @@
 <div id="porfolio_nav_container">
 <div class="ad-nav">
   <ul class="ad-na-list">
-
-          <li class="nav_thumb">
-            <a href="">
-              <img src="../../static/image/thumbs/t1.jpg" 
-                alt="image not load correctly" class="icon"/>
-              <div class="nav-title">this is album title</div>
-            </a>          
-           </li>
-             <li class="nav_thumb">
-            <a href="">
-              <img src="../../static/image/thumbs/t2.jpg" 
-                alt="image not load correctly" class="icon"/>
-              <div class="nav-title">this is album titlethis is album titlethis is album title</div>
-            </a>
-            
-           </li>
-           
- </ul>
+    {% for gallery in gallery_list %}
+    <li class="nav_thumb">
+      <a href="">
+        <img src="../../static/image/contact.png" 
+          alt="image not load correctly" class="icon"
+        />
+        <div class="nav-title">{{ gallery.title }}</div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
 </div><!--end ad-nav-->
 </div>
 
@@ -45,10 +38,10 @@
       <div class="ad-nav">
         <div class="ad-thumbs">
           <ul class="ad-thumb-list">
-          {% for picture in picture_list %}
+          {% for picture in gallery.pictures %}
           <li class="picture">
             <a href="/picture?_id={{ picture.id }}">
-              <img src="/thumb?_id={{ picture.thumb.id }}" 
+              <img src="/picture?_id={{ picture.id }}&type=thumb" 
                 alt="image not load correctly" 
               />
             </a>
@@ -92,7 +85,6 @@
         </div>
       </div>
     </div>
-
 
   </div>
 {% endblock %}

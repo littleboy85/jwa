@@ -108,6 +108,9 @@ ul, li {
 
 }
 
+.ad-thumb-list>li.picture img {
+    height: 60px;
+}
 
 #footer {
     height:60px;
@@ -122,6 +125,5 @@ ul, li {
 }
 
 .footer-line{
-padding-top:8px;
-
+	padding-top:8px;
 }

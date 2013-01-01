@@ -4,8 +4,8 @@
 {% endblock %}
 
 {% block content %}
-<form action="/picture_edit?gallery_id={{ form.fields.gallery.id }}" 
-  method="post">
+<form action="/picture_edit?gallery_id={{ form.fields.gallery_id }}" 
+  enctype="multipart/form-data" method="post">
   <div>
     {% if 'title' in form.errors %}
       <div class="error">{{ form.errors.title }}</div> 
@@ -20,7 +20,14 @@
     <label for="author">Author: </label>
     <input type="text" name="author" value="{{ form.fields.author }}"/>
   </div>
-  <input type="hidden" name="gallery" value="{{ form.fields.gallery.id }}"/>
+  <div>
+    {% if 'image' in form.errors %}
+      <div class="error">{{ form.errors.image }}</div> 
+    {% endif %}
+    <label for="image">Image: </label>
+    <input type="file" name="image" />
+  </div>
+  <input type="hidden" name="gallery_id" value="{{ form.fields.gallery_id }}"/>
   {% if form.instance %}
     <input type="hidden" name="_id" value="{{ form.instance.id }}"/>
   {% endif %}

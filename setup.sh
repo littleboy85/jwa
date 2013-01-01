@@ -23,4 +23,4 @@ fi
 virtualenv venv
 source venv/bin/activate
 
-pip install WebTest
+pip install WebTest PIL
