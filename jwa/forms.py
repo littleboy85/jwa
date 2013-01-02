@@ -46,7 +46,11 @@ class GalleryForm(Form):
 
 class PictureForm(Form):
     model = Picture
-    field_names = ['title', 'author', 'gallery_id', 'image', 'gallery_icon'] 
+    field_names = [
+        'title', 'author', 'gallery_id', 'image', 'gallery_icon', 
+        'media', 'price', 'original_available', 
+        'description', # 'width', 'height', 
+    ] 
 
     def is_valid(self):
         is_valid = super(PictureForm, self).is_valid()
@@ -58,7 +62,24 @@ class PictureForm(Form):
         else:
             self.errors['gallery'] = 'Can not find the porfolio'
         del self.cleaned_data['gallery_id']
-        
+
+        title = self.cleaned_data.get('title')
+        if not title:
+            self.errors['title'] = 'This field is required'
+
+        price = self.cleaned_data.get('price')
+        if price:
+            try:
+                self.cleaned_data['price'] = float(price)
+            except ValueError:
+                self.errors['price'] = 'Price is not valid'
+        else:
+            del self.cleaned_data['price']
+
+        self.cleaned_data['original_available'] = bool(
+            self.cleaned_data['original_available']
+        )
+
         image = self.cleaned_data.get('image')
         if image == None or len(image) == 0:
             if hasattr(self, 'instance'):

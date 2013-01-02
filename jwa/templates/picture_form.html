@@ -24,6 +24,36 @@
     <input type="checkbox" name="gallery_icon" value="true"/>
     Use as porfolio icon
   </div>
+  <!--
+  <div>
+    <label for="width">Width: </label>
+    <input type="text" name="width" value="{{ form.fields.width }}"/>
+    <label for="height">Height: </label>
+    <input type="text" name="height" readonly="true"
+      value="{{ form.fields.height }}"/>
+  </div>
+  -->
+  <div>
+    <label>Media: </label>
+    <input type="text" name="media" value="{{ form.fields.media }}"/>
+  </div>
+  <div>
+    {% if 'price' in form.errors %}
+      <div class="error">{{ form.errors.price }}</div> 
+    {% endif %}
+    <label>Price: </label>
+    <input type="text" name="price" value="{{ form.fields.price }}"/>
+  </div>
+  <div>
+    <label>Original Available: </label>
+    <input type="checkbox" name="original_available" value="true"/>
+  </div>
+  <div>
+    <label for="description">Description: </label>
+    <textarea name="description" cols="40" rows="10"
+      >{{ form.fields.description }}</textarea>
+  </div>
+
   <div>
     {% if 'image' in form.errors %}
       <div class="error">{{ form.errors.image }}</div> 
@@ -49,9 +79,13 @@
     <input type="hidden" name="_id" value="{{ form.instance.id }}"/>
   {% endif %}
   <div>
-    <a href="/" class="button">Cancel</a>
-    <input type="submit" class="button"
-      value="{% if form.instance %}Edit{% else %}Create{% endif %}"/>
+    <a href=
+      {% if form.instance and form.instance.id %}
+      "/porfolio?_id={{ form.fields.gallery_id }}&picture_id={{ form.instance.id}}"
+      {% else %}
+      "/porfolio?_id={{ form.fields.gallery_id }}"
+      {% endif %} class="button">Cancel</a>
+    <input type="submit" class="button" value="Save"/>
   </div>
 </form>
 {% endblock %}
