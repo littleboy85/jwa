@@ -1,6 +1,5 @@
 $(function() {
-  $('.selected', nav).removeClass('selected');
-  $('li',nav).eq(1).addClass('selected');
+  $('#nav').spasticNav({select: '.prices'});
 
   $('.ad-thumb-list>li.picture').each(function(){
     var $this = $(this);

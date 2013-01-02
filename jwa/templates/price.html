@@ -19,11 +19,10 @@
 
 {% block script %}
 <script src="../../static/js/slides.min.jquery.js"></script>
-	<script>
-		$(function(){
-		 $('.selected', nav).removeClass('selected');
-         $('li',nav).eq(4).addClass('selected');
-			});
-	</script>
+<script type="text/javascript">
+  $(function(){
+    $('#nav').spasticNav({select: '.prices'});
+  });
+</script>
 {% endblock %}
 
