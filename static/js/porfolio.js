@@ -14,6 +14,9 @@ $(function() {
         // preload next image
         var context = this;
         this.preloadImage(this.current_index + 1);
+        $('.ad-image>img').click(function(){
+          window.location.href = $(this).attr('src');
+        });
       }
     }
   });

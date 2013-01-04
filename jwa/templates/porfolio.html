@@ -2,6 +2,7 @@
 
 {% block css %}
   <link rel="stylesheet" href="/static/css/showporfolio.css"/>
+  <link rel="stylesheet" href="/static/css/porfolio.css"/>
 {% endblock %}
 {% block content %}
 
@@ -87,10 +88,12 @@
 {% if admin %}
   <div>
     <a href="/gallery_edit" class="button">Add New Porfolio</a>
-    <a href="/gallery_edit?_id={{ gallery.id }}" 
-      class="button">Edit Current Porfolio</a>
-    <a href="/picture_edit?gallery_id={{ gallery.id }}" 
-      class="button">Add New Image</a>
+    {% if gallery %}
+      <a href="/gallery_edit?_id={{ gallery.id }}" 
+        class="button">Edit {{ gallery.title }}</a>
+      <a href="/picture_edit?gallery_id={{ gallery.id }}" 
+        class="button">Add New Image to {{ gallery.title }}</a>
+    {% endif %}
   </div>
 {% endif %}
 

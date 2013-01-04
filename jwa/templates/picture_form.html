@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 
 {% block css %}
+<link rel="stylesheet" href="/static/css/form.css" type="text/css"/>
 {% endblock %}
 
 {% block content %}
-<form action="/picture_edit?gallery_id={{ form.fields.gallery_id }}" 
+<form action=
+  {% if form.instance and form.instance.id %}
+    "/picture_edit?_id={{ form.instance.id }}" 
+  {% else %}
+    "/picture_edit?gallery_id={{ form.fields.gallery_id }}" 
+  {% endif %}
   enctype="multipart/form-data" method="post">
   <div>
     {% if 'title' in form.errors %}
@@ -21,8 +27,9 @@
     <input type="text" name="author" value="{{ form.fields.author }}"/>
   </div>
   <div>
-    <input type="checkbox" name="gallery_icon" value="true"/>
-    Use as porfolio icon
+    <label>Use as porfolio icon: </label>
+    <input type="checkbox" name="gallery_icon" value="true" 
+      {% if form.fields.gallery_icon %}checked{% endif %}/>
   </div>
   <!--
   <div>
@@ -42,11 +49,12 @@
       <div class="error">{{ form.errors.price }}</div> 
     {% endif %}
     <label>Price: </label>
-    <input type="text" name="price" value="{{ form.fields.price }}"/>
+    <input type="text" name="price" value="{{ form.fields.price or '' }}"/>
   </div>
   <div>
     <label>Original Available: </label>
-    <input type="checkbox" name="original_available" value="true"/>
+    <input type="checkbox" name="original_available" value="true"
+      {% if form.fields.original_available %}checked{% endif %}/>
   </div>
   <div>
     <label for="description">Description: </label>

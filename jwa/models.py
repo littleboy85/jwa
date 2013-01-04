@@ -51,8 +51,17 @@ class Picture(db.Model, BaseModel):
 
     @price.setter
     def price(self, value):
-        self._price_by_cent = value * 100
+        self._price_by_cent = int(value * 100)
 
     @property
     def gallery_id(self):
         return self.gallery.id
+
+    @property
+    def gallery_icon(self):
+        return self.gallery.icon_picture.id == self.id
+
+
+class Event(db.Model, BaseModel):
+    description = db.TextProperty()
+

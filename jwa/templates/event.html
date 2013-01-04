@@ -6,22 +6,37 @@
 
 {% block content %}
 <div id="event_container">
- <div class="event-container">
-	  <div class="event-title"><img src="../../static/image/upcomingevents.png"></div>
-	  <div class="event-content">
-	
-	
-	  </div>
-	  
-	  </div>		
-	</div>
+  <div class="event-container">
+    <div class="event-title">
+      <img src="/static/image/upcomingevents.png"/>
+    </div> 
+    <div class="event-content">
+      {% if edit %}
+      <form action="/event?_id={{ event.id }}" method="post">
+        <textarea name="description">{{ event.description }}</textarea>
+      </form>
+      {% else %}
+        <div>
+          {{ event.description or '' }}
+        </div>
+        {% if admin %}
+          <div><a class="button"
+            href="/event?_id={{ event.id }}&edit=edit">Edit</a>
+          </div>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>		
+</div>
 {% endblock %}
 
 {% block script %}
-<script src="../../static/js/slides.min.jquery.js"></script>
+<script src="/static/js/slides.min.jquery.js"></script>
+<script src="/static/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
   $(function(){
     $('#nav').spasticNav({select: '.events'});
+    CKEDITOR.replace('description');
   });
 </script>
 {% endblock %}
