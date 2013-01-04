@@ -1,5 +1,5 @@
 $(function() {
-  $('#nav').spasticNav({select: '.prices'});
+  $('#nav').spasticNav({select: '.porfolio'});
 
   $('.ad-thumb-list>li.picture').each(function(){
     var $this = $(this);
