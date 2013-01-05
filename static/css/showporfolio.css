@@ -300,3 +300,18 @@ color:black;
 font-style:italic;
 
 }
+
+.pbutton{
+margin-left:auto;
+margin-right:auto;
+margin-top:20px;
+width:900px;
+
+}
+
+.edit_button{
+margin-left:6px;;
+margin-top:20px;
+width:300px;
+
+}

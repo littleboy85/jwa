@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="allform">
 <form action=
   {% if form.instance and form.instance.id %}
     "/picture_edit?_id={{ form.instance.id }}" 
@@ -12,23 +13,24 @@
     "/picture_edit?gallery_id={{ form.fields.gallery_id }}" 
   {% endif %}
   enctype="multipart/form-data" method="post">
-  <div>
-    {% if 'title' in form.errors %}
-      <div class="error">{{ form.errors.title }}</div> 
-    {% endif %}
+
+  <div class="ftitle">
     <label for="title">Title: </label>
     <input type="text" name="title" value="{{ form.fields.title }}"/>
-  </div>
-  <div>
-    {% if 'author' in form.errors %}
-      <div class="error">{{ form.errors.author }}</div> 
+    {% if 'title' in form.errors %}
+      <span class="error">   {{ form.errors.title }}</span> 
     {% endif %}
+  </div>
+  <div class="ftitle">
     <label for="author">Author: </label>
     <input type="text" name="author" value="{{ form.fields.author }}"/>
+     {% if 'author' in form.errors %}
+      <span class="error">{{   form.errors.author }}</span> 
+    {% endif %}
   </div>
-  <div>
+  <div class="ftitle">
     <label>Use as porfolio icon: </label>
-    <input type="checkbox" name="gallery_icon" value="true" 
+    <input style="width:20px; height:20px" type="checkbox" name="gallery_icon" value="true" 
       {% if form.fields.gallery_icon %}checked{% endif %}/>
   </div>
   <!--
@@ -40,35 +42,36 @@
       value="{{ form.fields.height }}"/>
   </div>
   -->
-  <div>
+  <div class="ftitle">
     <label>Media: </label>
     <input type="text" name="media" value="{{ form.fields.media }}"/>
   </div>
-  <div>
-    {% if 'price' in form.errors %}
-      <div class="error">{{ form.errors.price }}</div> 
-    {% endif %}
+  <div class="ftitle">
     <label>Price: </label>
     <input type="text" name="price" value="{{ form.fields.price or '' }}"/>
+     {% if 'price' in form.errors %}
+      <span class="error">{{ form.errors.price }}</span> 
+    {% endif %}
   </div>
-  <div>
+  <div class="ftitle">
     <label>Original Available: </label>
-    <input type="checkbox" name="original_available" value="true"
+    <input style="width:20px; height:20px" type="checkbox" name="original_available" value="true"
       {% if form.fields.original_available %}checked{% endif %}/>
   </div>
-  <div>
+  <div class="ftitle">
     <label for="description">Description: </label>
-    <textarea name="description" cols="40" rows="10"
+    <textarea name="description" cols="40" rows="5"
       >{{ form.fields.description }}</textarea>
   </div>
 
-  <div>
-    {% if 'image' in form.errors %}
-      <div class="error">{{ form.errors.image }}</div> 
-    {% endif %}
+  <div class="ftitle">
+    
     <label for="image">Image: </label>
     {% if form.instance and form.instance.image %}
-      <div>
+    {% if 'image' in form.errors %}
+      <div span="error">{{ form.errors.image }}</span> 
+    {% endif %}
+      <div class="ftitle">
         <div>
           <label>Currently: </label>
           <a href="/picture?_id={{ form.instance.id }}">image</a>
@@ -79,14 +82,14 @@
         </div>
       </div>
     {% else %}
-      <input type="file" name="image"/>
+      <input style="width:180px; height:60px" type="file" name="image"/>
     {% endif %}
   </div>
   <input type="hidden" name="gallery_id" value="{{ form.fields.gallery_id }}"/>
   {% if form.instance %}
     <input type="hidden" name="_id" value="{{ form.instance.id }}"/>
   {% endif %}
-  <div>
+  <div class="ftitle">
     <a href=
       {% if form.instance and form.instance.id %}
       "/porfolio?_id={{ form.fields.gallery_id }}&picture_id={{ form.instance.id}}"
@@ -96,6 +99,7 @@
     <input type="submit" class="button" value="Save"/>
   </div>
 </form>
+</div>
 {% endblock %}
 
 {% block script %}

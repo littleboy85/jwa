@@ -71,7 +71,7 @@
                 {% endif %}
 
                 {% if admin %}
-                <div>
+                <div class="edit_button">
                   <a href="/picture_edit?_id={{ picture.id }}" 
                     class="edit button">Edit</a>
                 </div>
@@ -88,8 +88,7 @@
 </div>
 
 {% if admin %}
-<br>
-  <div>
+  <div class="pbutton">
     <a href="/gallery_edit" class="button">Add New Porfolio</a>
     {% if gallery %}
       <a href="/gallery_edit?_id={{ gallery.id }}" 
