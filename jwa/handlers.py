@@ -1,7 +1,7 @@
 import cgi, webapp2, jinja2
 from google.appengine.api import users, images
 from jwa import forms, settings 
-from jwa.models import Gallery, Picture
+from jwa.models import Gallery, Picture, Event
 
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(settings.TEMPLATE_DIRS)
@@ -35,8 +35,44 @@ class ContactHandler(BaseHandler):
         self.render_to_template('contact.html')    
         
 class EventHandler(BaseHandler):
+
     def get(self):
-        self.render_to_template('event.html')        
+        id = self.request.get('_id')
+        try:
+            id = int(id)
+            obj = Event.get_by_id(id)
+        except ValueError, e:
+            obj = None
+
+        obj = obj or Event.all().get()
+        if not obj:
+            obj = Event()
+            obj.put()
+        self.render_to_template('event.html', {
+            'event': obj,
+            'edit': self.request.get('edit')
+        })
+
+    @login_required
+    def post(self):
+        description = self.request.get('description')
+        id = self.request.get('_id')
+        try:
+            id = int(id)
+            obj = Event.get_by_id(id)
+        except ValueError, e:
+            obj = None
+
+        if not obj:
+            self.abort(404)
+
+        obj.description = description
+        obj.put()
+        self.render_to_template('event.html', {
+            'event': obj
+        })
+
+
 class PriceHandler(BaseHandler):
     def get(self):
         self.render_to_template('price.html')        
@@ -118,4 +154,6 @@ class PictureEditHandler(FormHandler):
 
     def get_redirect(self, obj):
         return '/porfolio?_id=%s&picture_id=%s' % (obj.gallery.id, obj.id)
+
+
 

@@ -1,5 +1,5 @@
 $(function() {
-  $('#nav').spasticNav({select: '.prices'});
+  $('#nav').spasticNav({select: '.porfolio'});
 
   $('.ad-thumb-list>li.picture').each(function(){
     var $this = $(this);
@@ -14,6 +14,9 @@ $(function() {
         // preload next image
         var context = this;
         this.preloadImage(this.current_index + 1);
+        $('.ad-image>img').click(function(){
+          window.location.href = $(this).attr('src');
+        });
       }
     }
   });

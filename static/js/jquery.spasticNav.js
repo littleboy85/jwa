@@ -6,9 +6,9 @@
       speed : 500,
       reset : 100,
       color : '#0b2b61',
-      easing : 'easeOutExpo',
-      select: '.selected'
+      easing : 'easeOutExpo'
     }, options);
+
     return this.each(function() {
 
       var reset, cur;
@@ -39,14 +39,27 @@
       }
 
       if (options.select) {
-        cur = nav.find(options.select);
-      }else{
-        cur = nav.first('li');
+        nav.find('.selected').removeClass('selected');
+        nav.find(options.select).addClass('selected');
       }
+      cur = nav.find('.selected');
 
       blob.css({
         left : cur.position().left,
         top : cur.position().top - options.overlap / 2
+      });
+
+      var imgs = nav.find('img');
+      var count = imgs.length;
+      
+      imgs.load(function(){
+        count --;
+        if (count == 0){
+          blob.css({
+            left : cur.position().left,
+            top : cur.position().top - options.overlap / 2
+          });
+        }
       });
     }); // end each
 

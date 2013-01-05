@@ -20,16 +20,14 @@ body {
 }
 
 #top_outline{
-height: 21px;
-margin: 0 -22px;
-background: url(../image/outline_top.png) 50% 0 no-repeat;
-
-
+    height: 21px;
+    margin: 0 -22px;
+    background: url(../image/outline_top.png) 50% 0 no-repeat;
 }
 #middle_outline{
-margin: 0 -22px;
-padding: 0 22px;
-background: url(../image/outline_middle.png) 50% 0 repeat-y;
+    margin: 0 -22px;
+    padding: 0 22px;
+    background: url(../image/outline_middle.png) 50% 0 repeat-y;
 }
 
 #header{
@@ -79,13 +77,12 @@ ul, li {
 }
 
 #blob {
-   background: url('../../static/image/selected.png') no-repeat;
-   width:101px;
-   height:57px;
+    background: url('../../static/image/selected.png') no-repeat;
+    width:101px;
+    height:57px;
     position: absolute;
     z-index: 1;
     top: 0;
-  
 }
 
 #nav {
