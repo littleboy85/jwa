@@ -44,7 +44,8 @@ margin: 0px;
 {
 
 padding: 0px;
-margin-top: 20px;
+margin-bottom: 25px;
+margin-top:10px;
 } 
 
 .na-thumb{
@@ -156,8 +157,7 @@ background: #dcf2f7;
         text-align: left;
         width: 100%;
         z-index: 2;
-        background: url(../image/opa75.png);
-        color: #000;
+       
       }
       * html .ad-gallery .ad-image-wrapper .ad-image {
         background: none;
@@ -278,9 +278,25 @@ width:130px;
     display: block;
 }
 
-head{
+
 .ad-image-description h1{
 font-size:16px;
 text-align:center;
+
+}
+
+.oneline{
+height:1px;
+border-top:solid white 1px;
+width:600px;
+margin-top:10px;
+margin-bottom:10px;
+margin-left:auto;
+margin-right:auto;
+}
+.right_col a{
+
+color:black;
+font-style:italic;
 
 }

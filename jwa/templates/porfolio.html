@@ -40,6 +40,7 @@
               {% if picture.title %}
               <h1>{{ picture.title }}</h1> 
               {% endif %}
+               <div class="oneline"></div>
               <div class="left_col">
                 {% if picture.author %}
                 <div>{{ picture.author }}</div>
@@ -55,14 +56,14 @@
                 {% if picture.price %}
                 <div>
                   <label>Price: </label>
-                  <span>${{ picture.price }}</span>
-                </div>
+                  <span>${{ picture.price }}-----
                 {% endif %}
 
                 {% if picture.original_available %}
-                <div>
-                  <strong>Original Still Available</strong> Contact 
-                  <a href="mailto:info@janetwilliamsart.ca">Janet</a>
+               
+                  <strong>Original Still Available</strong>  
+                  <a href="mailto:info@janetwilliamsart.ca">contact Janet</a>
+              </span>
                 </div>
                 {% endif %}
                 {% if picture.description %}
@@ -85,7 +86,9 @@
     <div class="ad-image-description"></div>
   </div> <!-- end gallery -->
 </div>
+
 {% if admin %}
+<br>
   <div>
     <a href="/gallery_edit" class="button">Add New Porfolio</a>
     {% if gallery %}
