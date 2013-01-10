@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"xml:lang="en" lang="en">
+
+<head>
+<meta name="revisit-after" content="1 days" />
+<title>Janet Williams Art Gallery</title>
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+</head>
+
+<body>
+
+<div align="center">
+  <center>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="800" id="AutoNumber1" bgcolor="#FFFFCC">
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF">
+      <div align=center>
+      <img border="0" src="../images/janetwilliamsartheader3.jpg" width="675" height="80" /><br />
+      <b><i><font size="5">My Gallery - Fall 2009-1</font></i></b></div><br /></td>
+    </tr>
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF">
+          <div id="menu">
+      <!--#include virtual = "../menu.htm"-->
+      </div>
+</td>
+    </tr>
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF" style="height: 10px">
+        </td>
+    </tr>
+    <tr>
+      <td width="10" bgcolor="#472623">
+      <img border="0" src="../images/darkcorner1.jpg" width="18" height="18" /></td>
+      <td width="780" bgcolor="#472623">
+      &nbsp;</td>
+      <td width="10" bgcolor="#472623">
+      <img border="0" src="../images/darkcorner2.jpg" width="18" height="18" /></td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td>
+      &nbsp;</td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td>
+      <div align="center">
+        <center>
+        <table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700" id="AutoNumber2">
+          <tr>
+			<!-- LEFT COLUMN -->
+            <td align="center" width="233">
+			<p><a id="nodec" href="bestFriend.shtml">
+            <img alt="Best Friend" src="images/bestfriend2009thumb.jpg" height="207" width="138" /><br />
+			&quot;Best Friend&quot;</a></p>
+			<p><a id="nodec" href="delicateBalance.shtml">
+			<img alt="Delicate Balance" src="images/delicatebalance2009thumb.jpg" height="176" width="138" /><br />
+			&quot;Delicate Balance&quot;</a></p>
+			
+			</td>
+
+			<!-- CENTER COLUMN -->
+            <td align="center" width="233">
+            <p><a id="nodec" href="escapade.shtml">
+            <img alt="Progressive Movement" src="images/escapade2009thumb.jpg" height="83" width="250" /><br />
+            &quot;Escapade&quot;</a></p>
+			<p><a id="nodec" href="exhilaration.shtml">
+			<img alt="Exhilaration" src="images/exhilaration2009thumb.jpg" height="167" width="250" /><br />
+			&quot;Exhilaration&quot;</a></p>
+			<p><a id="nodec" href="moonlitBallerina.shtml">
+			<img alt="Moonlit Ballerina" src="images/moonlitBallerina2009thumb.jpg" height="156" width="250" /><br />
+			&quot;Moonlit Ballerina&quot;</a></p>
+			<p><a id="nodec" href="ta-da.shtml">
+			<img alt="Ta-Da" src="images/ta-da2009thumb.jpg" height="167" width="250" /><br />
+			&quot;Ta-Da&quot;</a></p>
+						
+			  </td>
+			  
+			  <!-- RIGHT COLUMN-->
+            <td align="center" width="234" style="border-style: none">
+			<p><a id="nodec" href="curtsy.shtml">
+			<img alt="Curtsy" src="images/curtsy2009thumb.jpg" height="209" width="139" /><br />
+			&quot;Curtsy&quot;</a></p>
+            <p><a id="nodec" href="havingABall.shtml">
+            <img alt="Having a Ball" src="images/havingaball2009thumb.jpg" height="176" width="138" /><br />
+			&quot;Having a Ball&quot;</a></p>
+						
+			</td>
+          </tr>
+          <tr>
+            <td align="center" width="233"> 
+            <a href="../gallery09/gallery09.shtml">
+            <img border="0" src="../images/buttons/back.jpg" width="70" height="30" /></a></td>
+            <td align="center" width="233">
+            <a href="../gallery09/gallery09.shtml">Previous Gallery Spring 09</a> | <br />
+            <a href="../galleryFall09/galleryFall09-2.shtml">Next Gallery Fall 2009-2</a></td>
+            <td align="center" width="234">
+            <a href="../galleryFall09/galleryFall09-2.shtml">
+            <img border="0" src="../images/buttons/next.jpg" width="62" height="30" /></a></td>
+          </tr>
+          </table>
+        </center>
+      </div>
+      </td>
+      <td width="10" bgcolor="#472623">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td>
+      <div id="footer">
+      <!--#include virtual = "../footer.htm" -->
+      </div>
+      </td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      <img border="0" src="../images/darkcorner4.jpg" width="18" height="18" /></td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td bgcolor="#472623">
+      <img border="0" src="../images/darkcorner3.jpg" width="18" height="18" /></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+</body>
+
+</html>

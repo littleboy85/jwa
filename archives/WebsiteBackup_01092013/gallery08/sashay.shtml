@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"xml:lang="en" lang="en">
+
+<head>
+<meta name="revisit-after" content="1 days" />
+<title>Janet Williams Art Gallery</title>
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+</head>
+
+<body>
+
+<div align="center">
+  <center>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="800" id="AutoNumber1" bgcolor="#FFFFCC">
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF">
+      <div align="center"><font size="2">
+      <img border="0" src="../images/janetwilliamsartheader3.jpg" width="675" height="80" /><br />
+      </font><b><i><font size="5">
+      
+      Sashay
+                              	      
+      </font></i></b></div></td>
+    </tr>
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF">
+      <div id="menu">
+      <!--#include virtual = "../menu.htm"-->
+      </div>
+	</td>
+    </tr>
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td width="10" bgcolor="#472623">
+      <font  size="2">
+      <img border="0" src="../images/darkcorner1.jpg" width="18" height="18" /></font></td>
+      <td width="780" bgcolor="#472623">
+      &nbsp;</td>
+      <td width="10" bgcolor="#472623">
+      <font  size="2">
+      <img border="0" src="../images/darkcorner2.jpg" width="18" height="18" /></font></td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td>
+      &nbsp;</td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td>
+      <div align="center">
+        <center>
+        <table border="0" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="716" id="AutoNumber2">
+          <tr>
+            <td width="350">
+            <img border="0" src="images/Sashay.jpg" width="346" height="576" /></td>
+            <td width="350" valign="top">
+            <p style="margin-top: 0; margin-bottom: 0">
+            
+            &quot;Sashay&quot;
+			
+			</p>
+            <hr />
+            <p style="margin-top: 0; margin-bottom: 0" align="left" >
+            <font size="2">Janet Williams
+            <br />
+            24&quot;x40&quot;
+            <br />
+            Acrylic on canvas, mixed media<br />
+            </font></p>
+            </td>
+          </tr>
+          <tr>
+            <td width="350" valign="top">
+            <p style="margin-top: 0; margin-bottom: 0" align="left">
+            <a href="wethreethetree.shtml">
+            <img border="0" src="../images/buttons/back.jpg" width="70" height="30" /></a></p></td>
+            <td width="347">
+            <p align="right">
+            <a href="singdance.shtml">
+            <img border="0" src="../images/buttons/next.jpg" width="62" height="30" /></a></p></td>
+          </tr>
+           <tr>
+            <td width="684" colspan="2">
+     <div id="footer">
+      <!--#include virtual = "../footer.htm" -->
+      </div></td>
+          </tr>
+        </table>
+        </center>
+      </div>
+      </td>
+      <td width="10" bgcolor="#472623">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td>
+      &nbsp;</td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      <font  size="2">
+      <img border="0" src="../images/darkcorner4.jpg" width="18" height="18" /></font></td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td bgcolor="#472623">
+      <font  size="2">
+      <img border="0" src="../images/darkcorner3.jpg" width="18" height="18" /></font></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+﻿a:link
+	{
+	color: #003366;
+	font-family:Verdana, Arial, Helvetica; 
+	font-size:10pt; 
+	text-decoration:none 
+	}
+a:hover      
+	{ 
+	font-family: Verdana, Arial, Helvetica; 
+	font-size: 10pt; 
+	color: #6491D2; 
+    text-decoration: underline 
+    }
+a:visited
+	{
+	color: #003366;
+	font-family:Verdana, Arial, Helvetica; 
+	font-size:10pt; 
+	text-decoration:none 
+	} 
+a:visited:hover 
+	{ 
+	font-family: Verdana, Arial, Helvetica; 
+	font-size: 10pt; 
+	color: #6491D2; 
+    text-decoration: underline 
+    }
+a:active 
+	{
+	color: #336699;
+	font-family:Verdana, Arial, Helvetica; 
+	font-size:10pt
+	}
+body
+	{
+	font-family: Verdana, Arial, Helvetica;
+	background-color: #F9FCFF;
+	color: #003366;
+	font-size:10pt
+	}
+h1, h2, h3, h4, h5, h6
+	{
+	font-family: Verdana, Arial, Helvetica;
+	}
+h1
+	{
+	color: #336699;font-family:Verdana; font-size:14pt
+	}
+h2
+	{
+	color: #336699; 
+	}
+h3
+	{
+	color: #003366;font-family:Verdana, Arial, Helvetica; font-size:12pt 
+	}
+h4
+	{
+	color: rgb(255,255,153);
+	}
+h5
+	{
+	color: #336699;
+	}
+h6
+	{
+	color: #336699;
+	}
+img
+	{
+	border:0px
+	}
+#nodec
+	{
+	text-decoration:none
+	}
+#footer
+{
+	text-align:center;
+	font-size:0.8em;
+	line-height:1.5em;
+}
+#footer a
+{
+font-size:1em;
+line-height:1em;
+	text-decoration:none;
+}
+#menu
+{
+	text-align:center;
+	font-size:2;
+	
+}
