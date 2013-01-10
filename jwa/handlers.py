@@ -58,9 +58,9 @@ class EventHandler(ContentHandler):
     content_name = 'event'
     template = 'event.html'
 
-class PriceHandler(BaseHandler):
-    def get(self):
-        self.render_to_template('price.html')        
+class PriceHandler(ContentHandler):
+    content_name = 'price-and-ordering'
+    template = 'price.html'
 
 class LoginHandler(BaseHandler):
 

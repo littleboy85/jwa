@@ -9,7 +9,20 @@
  <div class="price-container">
 	  <div class="price-title"><img src="../../static/image/pricesandordering.png"></div>
 	  <div class="price-content">
-	
+      {% if edit %}
+      <form action="/price" method="post">
+        <textarea name="content">{{ content.content }}</textarea>
+      </form>
+      {% else %}
+        <div>
+          {{ content.content or '' }}
+        </div>
+        {% if admin %}
+          <div><a class="button"
+            href="/price?edit=edit">Edit</a>
+          </div>
+        {% endif %}
+      {% endif %}
 	
 	  </div>
 	  
@@ -18,10 +31,12 @@
 {% endblock %}	
 
 {% block script %}
-<script src="../../static/js/slides.min.jquery.js"></script>
+<script src="/static/js/slides.min.jquery.js"></script>
+<script src="/static/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
-  $(document).ready(function(){
+  $(function(){
     $('#nav').spasticNav({select: '.prices'});
+    CKEDITOR.replace('content');
   });
 </script>
 {% endblock %}
