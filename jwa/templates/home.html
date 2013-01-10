@@ -29,15 +29,22 @@
  <div class="me-container">
 	  <div class="me-title"><img src="../../static/image/aboutjanet.png"></div>
 	  <div class="me-content">
-	  Born and raised in Saskatoon, Saskatchewan, I took an interest in art at young age and not unlike most kids, I loved to color. Once I mastered the art of staying in the lines (you have to start somewhere) and made my way through several boxes of Crayola Crayons, I soon found other mediums that captured my interest.  From finger paints and pipe cleaners to oil pastels and clay, each one had something unique to offer.  Today, my medium of choice is acrylic paint on canvas.  Periodically, I may add fabric or crystals to enhance a composition.  At the end of the day, I am driven by the simple pleasure of creating something that myself and others can enjoy.
-Over the years, I have amassed an eclectic portfolio of works originating from first grade through to the present.  Looking back on my creations, I can see how my skills have evolved.  My first 15 minutes of fame, so to speak, occurred in the fourth grade.  A piece of my work was displayed in the Mendel Art Gallery in Saskatoon as part of a school art collection.  What a thrill!!  Since then, I have had various works in the local newspaper, school yearbook, on the city transit bus pass, and other locations.  My personal favorite location remains to be on the walls in the homes of family and friends.
+      {% if edit %}
+      <form action="/home" method="post">
+        <textarea name="content">{{ content.content }}</textarea>
+      </form>
+      {% else %}
+        <div>
+          {{ content.content or '' }}
+        </div>
+        {% if admin %}
+          <div><a class="button"
+            href="/home?edit=edit">Edit</a>
+          </div>
+        {% endif %}
+      {% endif %}
 
-To cultivate my artistic skills, art was a standard class that I took every year throughout high school.  Upon graduation, I was the honored recipient of the Art and Creativity Award.  Rounding out my four year stay at the University of Saskatchewan, additional art classes such as art history and painting/related work broadened the spectrum of my work.   Through those classes, I was able to generate a number of paintings, which today, represents a large portion of my portfolio.  Obtaining a Bachelor of Education Degree in 1992 and subsequently working as a resource teacher for several years, I returned to the U of S to complete a Masters of Education Degree in 2001.  Currently I work as a School Psychologist in Saskatoon.  Although my professional career consumes much of my time,  I continuously seek opportunity to pursue my passion for painting.
-
-The works seen in My Gallery, are part of a recently released series “Dancing Ladies”. The series came to fruition over the course of a year in which thirteen paintings were created and displayed in Art Au Jus in Saskatoon in December 2006.  A successful opening was made possible by friends and colleagues alike.
-
-Thank you for taking the time to visit my site, sit back and enjoy the experience!
-	  
+	  	  
 	  </div>
 	  
 	  </div>	
@@ -46,23 +53,21 @@ Thank you for taking the time to visit my site, sit back and enjoy the experienc
 {% endblock %}
 
 {% block script %}
-<script src="../../static/js/slides.min.jquery.js"></script>
-	<script>
-		$(function(){
-			$('#slides').slides({
-				preload: true,
-				preloadImage: '../../static/image/loading.gif',
-				play: 5000,
-				pause: 2500,
-				hoverPause: true
-			});
-		});
-	</script>
+<script src="/static/js/slides.min.jquery.js"></script>
+<script src="/static/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
   $(function(){
+    $('#slides').slides({
+      preload: true,
+      preloadImage: '/static/image/loading.gif',
+      play: 5000,
+      pause: 2500,
+      hoverPause: true
+    });
+
     $('#nav').spasticNav({select: '.home'});
+    CKEDITOR.replace('content');
   });
 </script>
-
 {% endblock %}
 

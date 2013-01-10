@@ -1,20 +1,13 @@
 import cgi, webapp2, jinja2
 from google.appengine.api import users, images
-from jwa import forms, settings 
-from jwa.models import Gallery, Picture, Event
+from google.appengine.ext import db
+from jwa.models import Gallery, Picture, Content, UploadFile
+from jwa.forms import GalleryForm, PictureForm
+from jwa import settings
 
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(settings.TEMPLATE_DIRS)
 )
-
-class BaseHandler(webapp2.RequestHandler):
-
-    def render_to_template(self, template_name, context={}, status=200):
-        template = jinja_env.get_template(template_name)
-        context['admin'] = users.is_current_user_admin()
-        context['logout_url'] = users.create_logout_url(self.request.uri)
-        self.response.write(template.render(context))
-        self.response.set_status(status)
 
 def login_required(func):
     def _wrapped_view(self, *args, **kwargs):
@@ -26,52 +19,44 @@ def login_required(func):
             self.redirect(users.create_login_url(self.request.uri))
     return _wrapped_view
 
-class HomeHandler(BaseHandler):
-    def get(self):
-        self.render_to_template('home.html')
+class BaseHandler(webapp2.RequestHandler):
 
-class ContactHandler(BaseHandler):
-    def get(self):
-        self.render_to_template('contact.html')    
-        
-class EventHandler(BaseHandler):
+    def render_to_template(self, template_name, context={}, status=200):
+        template = jinja_env.get_template(template_name)
+        context['admin'] = users.is_current_user_admin()
+        context['logout_url'] = users.create_logout_url(self.request.uri)
+        self.response.write(template.render(context))
+        self.response.set_status(status)
+
+class ContentHandler(BaseHandler):
 
     def get(self):
-        id = self.request.get('_id')
-        try:
-            id = int(id)
-            obj = Event.get_by_id(id)
-        except ValueError, e:
-            obj = None
-
-        obj = obj or Event.all().get()
-        if not obj:
-            obj = Event()
-            obj.put()
-        self.render_to_template('event.html', {
-            'event': obj,
+        obj = Content.get_by_name(self.content_name, create=True)
+        self.render_to_template(self.template, {
+            'content': obj,
             'edit': self.request.get('edit')
         })
 
     @login_required
     def post(self):
-        description = self.request.get('description')
-        id = self.request.get('_id')
-        try:
-            id = int(id)
-            obj = Event.get_by_id(id)
-        except ValueError, e:
-            obj = None
-
-        if not obj:
-            self.abort(404)
-
-        obj.description = description
+        obj = Content.get_by_name(self.content_name, create=True)
+        obj.content = self.request.get('content')
         obj.put()
-        self.render_to_template('event.html', {
-            'event': obj
+        self.render_to_template(self.template, {
+            'content': obj
         })
 
+class HomeHandler(ContentHandler):
+    content_name = 'about'
+    template = 'home.html'
+
+class ContactHandler(BaseHandler):
+    def get(self):
+        self.render_to_template('contact.html')    
+        
+class EventHandler(ContentHandler):
+    content_name = 'event'
+    template = 'event.html'
 
 class PriceHandler(BaseHandler):
     def get(self):
@@ -135,7 +120,7 @@ class FormHandler(BaseHandler):
 
 class GalleryEditHandler(FormHandler):
     model = Gallery
-    form_cls = forms.GalleryForm
+    form_cls = GalleryForm
     template = 'gallery_form.html'
 
     def get_redirect(self, obj):
@@ -143,7 +128,7 @@ class GalleryEditHandler(FormHandler):
 
 class PictureEditHandler(FormHandler):
     model = Picture
-    form_cls = forms.PictureForm
+    form_cls = PictureForm
     template = 'picture_form.html'
 
     def get_initial(self):
@@ -155,5 +140,27 @@ class PictureEditHandler(FormHandler):
     def get_redirect(self, obj):
         return '/porfolio?_id=%s&picture_id=%s' % (obj.gallery.id, obj.id)
 
+class FileBrowser(BaseHandler):
+    def get(self): 
+        self.render_to_template('file_browser.html', {
+            'func_num': self.request.get('CKEditorFuncNum'),
+            'file_list': UploadFile.all(),
+        })
 
+class FileHandler(BaseHandler):
+    def get(self):
+        pass
 
+    def post(self):
+        f = self.request.POST['upload']
+        content = str(self.request.get('upload'))
+        upload_file = UploadFile(
+            blob=db.Blob(content), 
+            filename=f.filename,
+            type=f.type,
+        )
+        upload_file.put()
+        self.response.write('Upload Success')
+        
+
+        

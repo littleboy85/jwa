@@ -12,16 +12,16 @@
     </div> 
     <div class="event-content">
       {% if edit %}
-      <form action="/event?_id={{ event.id }}" method="post">
-        <textarea name="description">{{ event.description }}</textarea>
+      <form action="/event" method="post">
+        <textarea name="content">{{ content.content }}</textarea>
       </form>
       {% else %}
         <div>
-          {{ event.description or '' }}
+          {{ content.content or '' }}
         </div>
         {% if admin %}
           <div><a class="button"
-            href="/event?_id={{ event.id }}&edit=edit">Edit</a>
+            href="/event?edit=edit">Edit</a>
           </div>
         {% endif %}
       {% endif %}
@@ -36,7 +36,7 @@
 <script type="text/javascript">
   $(function(){
     $('#nav').spasticNav({select: '.events'});
-    CKEDITOR.replace('description');
+    CKEDITOR.replace('content');
   });
 </script>
 {% endblock %}

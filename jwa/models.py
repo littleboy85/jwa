@@ -36,12 +36,10 @@ class Picture(db.Model, BaseModel):
     create_date = db.DateTimeProperty(auto_now_add=True)
     update_date = db.DateTimeProperty(auto_now=True)
 
-    def __init__(self, price=None, image=None, *args, **kwargs):
+    def __init__(self, price=None, *args, **kwargs):
         if price != None:
             kwargs['_price_by_cent'] = int(price * 100)
-        if image != None:
-            image = db.Blob(str(image))
-        super(Picture, self).__init__(*args, image=image, **kwargs)
+        super(Picture, self).__init__(*args, **kwargs)
 
     @property
     def price(self):
@@ -61,7 +59,21 @@ class Picture(db.Model, BaseModel):
     def gallery_icon(self):
         return self.gallery.icon_picture.id == self.id
 
+class UploadFile(db.Model, BaseModel):
+    blob = db.BlobProperty()
+    filename = db.StringProperty()
+    type = db.StringProperty()
 
-class Event(db.Model, BaseModel):
-    description = db.TextProperty()
+class Content(db.Model, BaseModel):
+    name = db.StringProperty(required=True)
+    content = db.TextProperty(default='')
+
+    @classmethod
+    def get_by_name(cls, name, create=False):
+        obj = cls.all().filter('name =', name).get()
+        if create and not obj:
+            obj = cls(name=name)
+            obj.put()
+        return obj
+
 

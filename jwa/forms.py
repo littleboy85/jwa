@@ -1,4 +1,5 @@
 from jwa.models import Gallery, Picture
+from google.appengine.ext import db
 
 class Form(object):
     def __init__(self, data={}):
@@ -87,7 +88,7 @@ class PictureForm(Form):
         if len(image) == 0:
             self.errors['image'] = 'Please upload an image'
         else:
-            self.cleaned_data['image'] = image
+            self.cleaned_data['image'] = db.Blob(str(image))
 
         return len(self.errors) == 0
 

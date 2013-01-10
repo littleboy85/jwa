@@ -3,7 +3,7 @@
  * For licensing, see LICENSE.html or http://ckeditor.com/license
  */
 
-CKEDITOR.editorConfig = function( config ) {
+CKEDITOR.editorConfig = function(config) {
   // Define changes to default configuration here. For example:
   // config.language = 'fr';
   // config.uiColor = '#AADC6E';
@@ -27,5 +27,8 @@ CKEDITOR.editorConfig = function( config ) {
   // Remove some buttons, provided by the standard plugins, which we don't
   // need to have in the Standard(s) toolbar.
   config.removeButtons = 'Subscript,Superscript,Preview,NewPage,Print';
-
+  config.filebrowserBrowseUrl = '/file';
+  config.filebrowserUploadUrl = '/file';
+  config.extraPlugins = 'filebrowser';
 };
+

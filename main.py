@@ -24,4 +24,5 @@ if settings.DEBUG:
         'site-packages'
     ))
 
-app = webapp2.WSGIApplication(routes=routes, debug=settings.DEBUG)
+import logging
+app = webapp2.WSGIApplication(routes=routes.routes, debug=settings.DEBUG)
