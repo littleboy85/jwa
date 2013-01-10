@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"xml:lang="en" lang="en">
+
+<head>
+<meta name="revisit-after" content="1 days" />
+<title>Janet Williams Art Gallery</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+</head>
+
+<body>
+
+<div align="center">
+  <center>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="800" id="AutoNumber1" bgcolor="#FFFFCC">
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF">
+      <div align="center"><font size="2">
+      <img border="0" src="images/janetwilliamsartheader3.jpg" width="675" height="80" /><br />
+      </font><b><i><font size="5">
+      
+      About the Artist
+      
+      </font></i></b></div></td>
+    </tr>
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF">
+      <div id="menu">
+      <!--#include file = "menu.htm"-->
+      </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td width="10" bgcolor="#472623">
+      <font  size="2">
+      <img border="0" src="images/darkcorner1.jpg" width="18" height="18" /></font></td>
+      <td width="780" bgcolor="#472623">
+      &nbsp;</td>
+      <td width="10" bgcolor="#472623">
+      <font  size="2">
+      <img border="0" src="images/darkcorner2.jpg" width="18" height="18" /></font></td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td>
+      &nbsp;</td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td>
+      <div align="center">
+        <center>
+        <table border="0" cellpadding="8" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="716" id="AutoNumber2">
+          <tr>
+            <td align="center" width="220">
+            
+            <a href="gallery06/memories.shtml">
+            <img border="0" src="gallery06/images/small/memories-sm.jpg" width="200" height="125" /><br />
+            &quot;Memories of Childhood&quot;</a></td>
+            <td align="left" width="496">
+            Born and raised 
+            in Saskatoon, Saskatchewan, I took an interest in art at young age 
+            and not unlike most kids, I loved to color. Once I mastered the art 
+            of staying in the lines (you have to start somewhere) and made my 
+            way through several boxes of Crayola Crayons, I soon found other 
+            mediums that captured my interest.&nbsp; From finger paints and pipe 
+            cleaners to oil pastels and clay, each one had something unique to 
+            offer.&nbsp; Today, my medium of choice is acrylic paint on canvas.&nbsp; 
+            Periodically, I may add fabric or crystals to enhance a 
+            composition.&nbsp; At the end of the day, I am driven by the simple 
+            pleasure of creating something that myself and others can enjoy.
+            </td>
+          </tr>
+          <tr>
+            <td align="left" width="716" colspan="2">
+            <p>Over the years, I have 
+            amassed an eclectic portfolio of works originating from first grade 
+            through to the present.&nbsp; Looking back on my creations, I can see how 
+            my skills have evolved.&nbsp; My first 15 minutes of fame, so to speak, 
+            occurred in the fourth grade.&nbsp; A piece of my work was displayed in 
+            the Mendel Art Gallery in Saskatoon as part of a school art 
+            collection.&nbsp; What a thrill!!&nbsp; Since then, I have had various works 
+            in the local newspaper, school yearbook, on the city transit bus 
+            pass, and other locations.&nbsp; My personal favorite location remains to 
+            be on the walls in the homes of family and friends.</p>
+            <p>To cultivate my artistic 
+            skills, art was a standard class that I took every year throughout 
+            high school.&nbsp; Upon graduation, I was the honored recipient of the 
+            Art and Creativity Award.&nbsp; Rounding out my four year stay at the 
+            University of Saskatchewan, additional art classes such as art 
+            history and painting/related work broadened 
+            the spectrum of my work.&nbsp; &nbsp;Through those classes, I was able to 
+            generate a number of paintings, which today, represents a
+            large portion of my portfolio.&nbsp; 
+            Obtaining a Bachelor of Education Degree in 1992 and subsequently 
+            working as a resource teacher for several years, I returned to the U 
+            of S to complete a Masters of Education Degree in 2001.&nbsp; Currently I 
+            work as a School Psychologist in Saskatoon.&nbsp; Although my 
+            professional career consumes much of my time, &nbsp;I continuously seek 
+            opportunity to pursue my passion for painting.</p>
+            <p>The works seen in <u>
+            <a href="gallery06/gallery06.shtml"><u>My Gallery</u></a></u>, 
+            are part of a recently released series “Dancing Ladies”. The series 
+            came to fruition over the course of a year in which thirteen 
+            paintings were created and displayed in Art Au Jus in Saskatoon in 
+            December 2006.&nbsp; A successful opening was made possible by friends 
+            and colleagues alike.</p>
+            <p>
+            
+            Thank you for taking the time to visit my site, sit back and enjoy 
+            the experience!
+            </p>
+            </td>
+          </tr>
+          <tr>
+            <td width="716" colspan="2">
+      <div id="footer">
+      <!--#include file = "footer.htm" -->
+      </div></td>
+          </tr>
+        </table>
+        </center>
+      </div>
+      </td>
+      <td width="10" bgcolor="#472623">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td>
+      &nbsp;</td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      <font  size="2">
+      <img border="0" src="images/darkcorner4.jpg" width="18" height="18" /></font></td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td bgcolor="#472623">
+      <font  size="2">
+      <img border="0" src="images/darkcorner3.jpg" width="18" height="18" /></font></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+</body>
+
+</html>

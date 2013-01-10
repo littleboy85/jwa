@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"xml:lang="en" lang="en">
+
+<head>
+<meta name="revisit-after" content="1 days" />
+<title>Janet Williams Art Gallery</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+</head>
+
+<body>
+
+<div align="center">
+  <center>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="800" id="AutoNumber1" bgcolor="#FFFFCC">
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF">
+      <p align="center"><font size="2">
+      <img border="0" src="images/janetwilliamsartheader3.jpg" width="675" height="80" /><br />
+      </font><b><i><font size="5">
+      Links</font></i></b></p></td>
+    </tr>
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF">
+      <div id="menu">
+      <!--#include file = "menu.htm"-->
+      </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td width="10" bgcolor="#472623">
+      <img border="0" src="images/darkcorner1.jpg" width="18" height="18"></td>
+      <td width="780" bgcolor="#472623">
+      &nbsp;</td>
+      <td width="10" bgcolor="#472623">
+      <img border="0" src="images/darkcorner2.jpg" width="18" height="18"></td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td>
+      &nbsp;</td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623" align="left">
+      &nbsp;</td>
+      <td align="left">
+      <div align="center">
+        <center>
+        <table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700" id="AutoNumber2">
+          <tr>
+            <td align="center" width="628">
+            <div style="border-bottom-style: dashed; border-bottom-width: 1">
+            <p class="MsoNormal" align="left">Here are some friends of Janet 
+			Williams Art.</div>
+            </td>
+          </tr>
+          <tr>
+            <td align="left" width="628">
+            <p align="center">
+            &nbsp;</p>
+            </td>
+          </tr>
+            <tr>
+            <td width="684" colspan="2">
+      <div id="footer">
+      <!--#include file = "footer.htm" -->
+      </div></td>
+          </tr>
+          </table>
+        </center>
+      </div>
+      </td>
+      <td width="10" bgcolor="#472623" align="left">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td>
+      &nbsp;</td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      <img border="0" src="images/darkcorner4.jpg" width="18" height="18"></td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td bgcolor="#472623">
+      <img border="0" src="images/darkcorner3.jpg" width="18" height="18"></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+</body>
+
+</html>
