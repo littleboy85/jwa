@@ -82,8 +82,12 @@ class PictureHandler(BaseHandler):
 class GalleryHandler(BaseHandler):
 
     def get(self):
-        id = self.request.get('_id', '1')
-        gallery = Gallery.get_by_id(int(id))
+        id = self.request.get('_id')
+        gallery = None
+        if id:
+            gallery = Gallery.get_by_id(int(id))
+        if not gallery:
+            gallery = Gallery.all().get()
         self.render_to_template('porfolio.html', {
             'gallery_list': Gallery.all(),
             'gallery': gallery,
