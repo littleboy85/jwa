@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"xml:lang="en" lang="en">
+
+<head>
+<meta name="revisit-after" content="1 days" />
+<title>Janet Williams Art Gallery</title>
+<link rel="stylesheet" type="text/css" href="../stylesheet.css" />
+</head>
+
+<body>
+
+<div align="center">
+  <center>
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="800" id="AutoNumber1" bgcolor="#FFFFCC">
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF">
+      <div align=center>
+      <img border="0" src="../images/janetwilliamsartheader3.jpg" width="675" height="80" /><br />
+      <b><i><font size="5">My Gallery - 2010</font></i></b></div><br /></td>
+    </tr>
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF">
+          <div id="menu">
+      <!--#include virtual = "../menu.htm"-->
+      </div>
+</td>
+    </tr>
+    <tr>
+      <td colspan="3" width="800" bgcolor="#FFFFFF" style="height: 10px">
+        </td>
+    </tr>
+    <tr>
+      <td width="10" bgcolor="#472623">
+      <img border="0" src="../images/darkcorner1.jpg" width="18" height="18" /></td>
+      <td width="780" bgcolor="#472623">
+      &nbsp;</td>
+      <td width="10" bgcolor="#472623">
+      <img border="0" src="../images/darkcorner2.jpg" width="18" height="18" /></td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td>
+      &nbsp;</td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td>
+      <div align="center">
+        <center>
+        <table border="0" cellpadding="12" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="700" id="AutoNumber2">
+          <tr>
+			<!-- LEFT COLUMN -->
+            <td align="center" width="233" valign="top">
+            <p><a id="nodec" href="makingAPass.shtml">
+			<img alt="Making a Pass" src="images/makingAPass2010thumb.jpg" height="167" width="250" /><br />
+			&quot;Making a Pass&quot;</a></p>
+			<p><a id="nodec" href="collectivePower.shtml">
+			<img alt="Collective Power" src="images/collectivePower2010thumb.jpg" height="207" width="138" /><br />
+			&quot;Collective Power&quot;</a></p>
+			<p><a id="nodec" href="serendipity.shtml">
+			<img alt="Serendipity" src="images/serendipity2010thumb.jpg" height="167" width="250" /><br />
+			&quot;Serendipity&quot;</a></p>
+
+			</td>
+
+			<!-- CENTER COLUMN -->
+			
+            <td align="center" width="233">
+            <p><a id="nodec" href="happyTogether.shtml">
+            <img alt="Happy Together" src="images/happyTogether2010thumb.jpg" height="83" width="250" /><br />
+            &quot;Happy Together&quot;</a></p>
+   			<p><a id="nodec" href="blueWonder.shtml">
+            <img alt="Blue Wonder" src="images/blueWonder2010thumb.jpg" height="125" width="250" /><br />
+			&quot;Blue Wonder&quot;</a></p>
+			<p><a id="nodec" href="captivatedEnergy.shtml">
+			<img alt="Captivated Energy" src="images/captivatedEnergy2010thumb.jpg" height="125" width="250" /><br />
+			&quot;Captivated Energy&quot;</a></p>
+			<p><a id="nodec" href="enchanted.shtml">
+			<img alt="Enchanted" src="images/enchanted2010thumb.jpg" height="125" width="250" /><br />
+			&quot;Enchanted&quot;</a></p>
+
+			<p><a id="nodec" href="retrospective.shtml">
+			<img alt="RETROspective" src="images/retrospective2010thumb.jpg" height="125" width="250" /><br />
+			&quot;RETROspective&quot;</a></p>
+			
+			  </td>
+			  
+			  <!-- RIGHT COLUMN-->
+            <td align="center" width="234" style="border-style:none" valign="top">
+			<p><a id="nodec" href="steppingOut.shtml">
+			<img alt="Stepping Out" src="images/steppingout2010thumb.jpg" height="345" width="138" /><br />
+			&quot;Stepping Out&quot;</a></p>
+			
+            <p><a id="nodec" href="synchronicity.shtml">
+            <img alt="Synchronicity" src="images/synchronicity2010thumb.jpg" height="167" width="250" /><br />
+			&quot;Synchronicity&quot;</a></p>
+
+			<p><a id="nodec" href="inTheJungle.shtml">
+			<img alt="In The Jungle" src="images/inTheJungle2010thumb.jpg" height="125" width="250" /><br />
+			&quot;In the Jungle&quot;</a></p>
+
+			
+			</td>
+          </tr>
+          <tr>
+            <td align="center" width="233">
+        <a href="../galleryFall09/galleryFall09-2.shtml">
+            <img border="0" src="../images/buttons/back.jpg" width="70" height="30" /></a></td>
+            <td align="center" width="233">
+            <a href="../galleryFall09/galleryFall09-2.shtml">Previous Gallery Fall 2009-2</a> | <br />
+            <a href="../gallery06/gallery06.shtml">Next Gallery - Dancing Ladies</a></td>
+            <td align="center" width="234">
+            <a href="../gallery11/gallery11.shtml">
+            <img border="0" src="../images/buttons/next.jpg" width="62" height="30" /></a></td>
+          </tr>
+          </table>
+        </center>
+      </div>
+      </td>
+      <td width="10" bgcolor="#472623">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td>
+      <div id="footer">
+      <!--#include virtual = "../footer.htm" -->
+      </div>
+      </td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#472623">
+      <img border="0" src="../images/darkcorner4.jpg" width="18" height="18" /></td>
+      <td bgcolor="#472623">
+      &nbsp;</td>
+      <td bgcolor="#472623">
+      <img border="0" src="../images/darkcorner3.jpg" width="18" height="18" /></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+</body>
+
+</html>
