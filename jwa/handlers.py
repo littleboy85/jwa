@@ -50,9 +50,9 @@ class HomeHandler(ContentHandler):
     content_name = 'about'
     template = 'home.html'
 
-class ContactHandler(BaseHandler):
-    def get(self):
-        self.render_to_template('contact.html')    
+class ContactHandler(ContentHandler):
+    content_name = 'contact'
+    template = 'contact.html'
         
 class EventHandler(ContentHandler):
     content_name = 'event'
@@ -143,6 +143,21 @@ class PictureEditHandler(FormHandler):
 
     def get_redirect(self, obj):
         return '/porfolio?_id=%s&picture_id=%s' % (obj.gallery.id, obj.id)
+
+class DeleteHandler(BaseHandler):
+
+    def get(self):
+        obj = db.get(self.request.get('key'))
+        self.render_to_template('delete.html', {
+            'obj': obj,
+            'obj_url': self.request.get('obj_url', self.request.referer),
+            'success_url': self.request.get('success_url'),
+        })
+
+    def post(self):
+        obj = db.get(self.request.get('key'))
+        obj.delete()
+        self.redirect(self.request.get('success_url'))
 
 class FileBrowser(BaseHandler):
     def get(self): 

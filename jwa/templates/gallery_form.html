@@ -29,10 +29,23 @@
           "/porfolio" 
         {% endif %}
         class="button">back</a>
-      <input type="submit" class="button"
-        value="{% if form.instance %}Edit{% else %}Create{% endif %}"/>
+      <input type="submit" class="button" value="Save"/>
+      {% if form.instance and form.instance.id %}
+        <a class="button delete" href=
+          "/delete?key={{ form.instance.key() }}&obj_url=%2Fgallery_edit%3F_id%3D{{ form.instance.id }}&success_url=%2Fporfolio" 
+          >Delete</a>
+      {% endif %}
     </div>
   </form>
 </div>
+{% endblock %}
+
+{% block script %}
+<script src="/static/js/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    CKEDITOR.replace('description');
+  });
+</script>
 {% endblock %}
 

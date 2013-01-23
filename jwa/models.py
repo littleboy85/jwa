@@ -18,6 +18,11 @@ class Gallery(db.Model, BaseModel):
         else:
             return self.pictures.get()
 
+    def delete(self):
+        for picture in self.pictures:
+            picture.delete()
+        db.delete(self.key())
+
 class Picture(db.Model, BaseModel):
     gallery = db.ReferenceProperty(
         Gallery, required=True, collection_name='pictures'

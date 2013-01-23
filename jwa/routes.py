@@ -6,6 +6,7 @@ routes = [
     ('/picture', handlers.PictureHandler),
     ('/picture_edit', handlers.PictureEditHandler),
     ('/gallery_edit', handlers.GalleryEditHandler),
+    ('/delete', handlers.DeleteHandler),
     ('/home', handlers.HomeHandler),
     ('/event', handlers.EventHandler),
     ('/contact', handlers.ContactHandler),

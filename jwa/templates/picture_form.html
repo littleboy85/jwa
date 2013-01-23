@@ -97,6 +97,11 @@
       "/porfolio?_id={{ form.fields.gallery_id }}"
       {% endif %} class="button">Cancel</a>
     <input type="submit" class="button" value="Save"/>
+    {% if form.instance and form.instance.id %}
+      <a class="button delete" href=
+        "/delete?key={{ form.instance.key() }}&obj_url=%2Fpicture_edit%3F_id%3D{{ form.instance.id }}&success_url=%2Fporfolio%3F_id%3D{{ form.fields.gallery_id }}" 
+        >Delete</a>
+    {% endif %}
   </div>
 </form>
 </div>
