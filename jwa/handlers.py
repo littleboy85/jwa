@@ -30,12 +30,16 @@ class BaseHandler(webapp2.RequestHandler):
 
 class ContentHandler(BaseHandler):
 
-    def get(self):
+    def get_context(self, **kwargs):
         obj = Content.get_by_name(self.content_name, create=True)
-        self.render_to_template(self.template, {
+        return {
             'content': obj,
-            'edit': self.request.get('edit')
-        })
+            'edit': self.request.get('edit'),
+        }
+
+    def get(self):
+        context = self.get_context()
+        self.render_to_template(self.template, context)
 
     @login_required
     def post(self):
@@ -49,6 +53,21 @@ class ContentHandler(BaseHandler):
 class HomeHandler(ContentHandler):
     content_name = 'about'
     template = 'home.html'
+
+    def get_context(self, **kwargs):
+        context = super(HomeHandler, self).get_context(**kwargs)
+        qs = Picture.all().filter('slider =', True)
+        ps = [picture for picture in qs]
+        import logging
+        for p in ps:
+            logging.info(p.id)
+            logging.info(str(p.id))
+        for p in ps:
+            logging.info(p.id)
+            logging.info(str(p.id))
+
+        context['slider_pictures'] = ps
+        return context
 
 class ContactHandler(ContentHandler):
     content_name = 'contact'
@@ -83,14 +102,22 @@ class GalleryHandler(BaseHandler):
 
     def get(self):
         id = self.request.get('_id')
-        gallery = None
+        picture_id = self.request.get('picture_id')
+        picture = Picture.get_by_id(int(picture_id)) if picture_id else None
         if id:
             gallery = Gallery.get_by_id(int(id))
-        if not gallery:
-            gallery = Gallery.all().get()
+        else:
+            if picture is None:
+                gallery = Gallery.all().get()
+            else:
+                gallery = picture.gallery
+        if picture is None or picture.gallery.id != gallery.id:
+            picture = gallery.pictures.get()
+
         self.render_to_template('porfolio.html', {
             'gallery_list': Gallery.all(),
             'gallery': gallery,
+            'cur_picture': picture,
         })
 
 class FormHandler(BaseHandler):

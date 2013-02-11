@@ -37,6 +37,7 @@ class Picture(db.Model, BaseModel):
     media = db.StringProperty() # or change to dropdown ?
     _price_by_cent = db.IntegerProperty()
     original_available = db.BooleanProperty(default=False)
+    slider = db.BooleanProperty(default=False)
     description = db.TextProperty()
     create_date = db.DateTimeProperty(auto_now_add=True)
     update_date = db.DateTimeProperty(auto_now=True)

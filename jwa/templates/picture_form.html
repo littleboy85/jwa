@@ -30,8 +30,13 @@
   </div>
   <div class="ftitle">
     <label>Use as porfolio icon: </label>
-    <input style="width:20px; height:20px" type="checkbox" name="gallery_icon" value="true" 
-      {% if form.fields.gallery_icon %}checked{% endif %}/>
+    <input style="width:20px; height:20px" type="checkbox" name="gallery_icon" 
+      value="true" {% if form.fields.gallery_icon %}checked{% endif %}/>
+  </div>
+  <div class="ftitle">
+    <label>Use as slider picture: </label>
+    <input style="width:20px; height:20px" type="checkbox" name="slider" 
+      value="true" {% if form.fields.gallery_icon %}checked{% endif %}/>
   </div>
   <!--
   <div>

@@ -5,10 +5,14 @@ $(function() {
     var $this = $(this);
     $this.find('img').data('ad-desc', $this.find('.picture_data').html());
   });
+
+  var images = $('ul.ad-thumb-list>li.picture>a.image');
+  var cur = images.filter('.current');
+  var hash = '#ad-image-' + images.index(cur);
+  console.log(hash);
+  location.hash = hash;
     
   var galleries = $('.ad-gallery').adGallery({
-    update_window_hash: true,
-    description_wrapper: $('.ad-image-description'),
     callbacks: {
       afterImageVisible: function(){
         // preload next image
@@ -18,30 +22,13 @@ $(function() {
           window.location.href = $(this).attr('src');
         });
       }
+    },
+    hooks: {
+      displayDescription: function(image) {
+        $('.ad-image-description').html(image.desc);
+        $('.ad-title').text(image.title);
+      }
     }
   });
-  
-  $('#switch-effect').change(
-    function() {
-      galleries[0].settings.effect = $(this).val();
-      return false;
-    }
-  );
-  $('#toggle-slideshow').click(
-    function() {
-      galleries[0].slideshow.toggle();
-      return false;
-    }
-  );
-  $('#toggle-description').click(
-    function() {
-      if(!galleries[0].settings.description_wrapper) {
-        galleries[0].settings.description_wrapper = $('#descriptions');
-      } else {
-        galleries[0].settings.description_wrapper = false;
-      }
-      return false;
-    }
-  );
 });
 

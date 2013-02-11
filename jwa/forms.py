@@ -49,7 +49,7 @@ class PictureForm(Form):
     model = Picture
     field_names = [
         'title', 'author', 'gallery_id', 'image', 'gallery_icon', 
-        'media', 'price', 'original_available', 
+        'media', 'price', 'slider', 'original_available', 
         'description', # 'width', 'height', 
     ] 
 
@@ -95,6 +95,7 @@ class PictureForm(Form):
     def save(self):
         gallery_icon = self.cleaned_data['gallery_icon']
         del self.cleaned_data['gallery_icon']
+        self.cleaned_data['slider'] = bool(self.cleaned_data['slider'])
         instance = super(PictureForm, self).save()
         if gallery_icon:
             instance.gallery.icon_picture = instance
