@@ -95,7 +95,7 @@ class GalleryHandler(BaseHandler):
                 gallery = Gallery.all().get()
             else:
                 gallery = picture.gallery
-        if picture is None or picture.gallery.id != gallery.id:
+        if gallery and (picture is None or picture.gallery.id != gallery.id):
             picture = gallery.pictures.get()
 
         self.render_to_template('porfolio.html', {

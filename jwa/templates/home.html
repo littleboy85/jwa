@@ -11,7 +11,7 @@
       <div class="slides_container">
         {% for picture in slider_pictures %}
         <a href="/porfolio?picture_id={{ picture.id }}">
-          <img src="/picture?_id={{picture.id}}" 
+          <img src="{{picture.serving_url}}&width=700" 
             width="700" height="350" alt="{{ picture.title }}"/>
         </a>
         {% endfor %}
