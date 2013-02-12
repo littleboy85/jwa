@@ -1,5 +1,18 @@
-from jwa.models import Gallery, Picture
 from google.appengine.ext import db
+from google.appengine.api import images
+from jwa import settings
+from jwa.models import Gallery, Picture
+
+def watermark(image):
+    img = images.Image(images.resize(str(image), 800, 600))
+    with open(settings.WATERMARK_PATH, 'rb') as f:
+        watermark = images.Image(images.resize(f.read(), img.width, img.height))
+        x = (img.width - watermark.width)/2
+        y = (img.height- watermark.height)/2 
+        return images.composite([
+            (img, 0, 0, 1.0, images.TOP_LEFT, ), 
+            (watermark, x, y, 0.2, images.TOP_LEFT, ),
+        ], img.width, img.height, 0, images.JPEG,)
 
 class Form(object):
     def __init__(self, data={}):
@@ -49,7 +62,7 @@ class PictureForm(Form):
     model = Picture
     field_names = [
         'title', 'author', 'gallery_id', 'image', 'gallery_icon', 
-        'media', 'price', 'original_available', 
+        'media', 'price', 'slider', 'original_available', 
         'description', # 'width', 'height', 
     ] 
 
@@ -88,19 +101,22 @@ class PictureForm(Form):
         if len(image) == 0:
             self.errors['image'] = 'Please upload an image'
         else:
-            self.cleaned_data['image'] = db.Blob(str(image))
-
+            self.cleaned_data['image'] = db.Blob(watermark(image))
         return len(self.errors) == 0
 
     def save(self):
         gallery_icon = self.cleaned_data['gallery_icon']
         del self.cleaned_data['gallery_icon']
+        self.cleaned_data['slider'] = bool(self.cleaned_data['slider'])
         instance = super(PictureForm, self).save()
+        gallery = instance.gallery
         if gallery_icon:
-            instance.gallery.icon_picture = instance
-            instance.gallery.put()
+            gallery.icon_picture = instance
+            gallery.put()
+        else:
+            if gallery.icon_picture and gallery.icon_picture.id == instance.id:
+                gallery.icon_picture = None
+                gallery.put()
         return instance
 
-
-  
 

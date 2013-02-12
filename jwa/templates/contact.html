@@ -5,27 +5,37 @@
 {% endblock %}
 
 {% block content %}
-<div id="contact_container">
- <div class="contact-container">
-	  <div class="contactjanet-title"><img src="../../static/image/contactjanet.png"></div>
-	  <div class="contactjanet-content">
-	<div class="contact-title">Email:</div>
-	<div class="contact-word"><a href="mailto:info@janetwilliamsart.ca">info@janetwilliamsart.ca</a></div>
-	<div class="contact-title">Phone:</div>
-    <div class="contact-word">306-665-6324  </div>
-	  </div>
-	  
-	  </div>		
-	</div>
+<div id="contact_container"> 
+  <div class="contact-container"> 
+    <div class="contactjanet-title"> 
+      <img src="/static/image/contactjanet.png"/>
+    </div>
+    <div class="contact-content">
+      {% if edit %}
+      <form action="/contact" method="post">
+        <textarea name="content">{{ content.content }}</textarea>
+      </form>
+      {% else %}
+        <div>
+          {{ content.content or '' }}
+        </div>
+        {% if admin %}
+          <div><a class="button"
+            href="/contact?edit=edit">Edit</a>
+          </div>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>		
+</div>
 {% endblock %}
 
 {% block script %}
-<script src="../../static/js/slides.min.jquery.js"></script>
+<script src="/static/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
-  $(function(){
-    $('#nav').spasticNav({
-      select: '.contact'
-    });
+  $(document).ready(function(){
+    $('#nav').spasticNav({select: '.contact'});
+    CKEDITOR.replace('content');
   });
 </script>
 {% endblock %}

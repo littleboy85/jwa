@@ -12,7 +12,7 @@
       {% for gallery in gallery_list %}
       <li class="nav_thumb">
       <a href="/porfolio?_id={{ gallery.id }}">
-        <img src="/picture?_id={{ gallery.icon.id }}&type=thumb" 
+        <img src="{{ gallery.icon.serving_url }}&width=160&height=160" 
             alt="image not load correctly" class="icon"
           />
           <div class="nav-title">{{ gallery.title }}</div>
@@ -24,8 +24,11 @@
 </div>
 
 <div id="showporfolio_container">
-  
+  <div class="gallery-description">
+    {{ gallery.description or '' }}
+  </div>  
   <div id="gallery" class="ad-gallery">
+    <h3 class="ad-title"></h3>
     <div class="ad-image-wrapper"></div>
     <div class="ad-controls"></div>
     <div class="ad-nav">
@@ -33,14 +36,13 @@
         <ul class="ad-thumb-list">
         {% for picture in gallery.pictures %}
           <li class="picture">
-            <a href="/picture?_id={{ picture.id }}" class="image">
-              <img src="/picture?_id={{ picture.id }}&type=thumb"/>
+            <a href="{{ picture.serving_url }}" 
+              class="image {% if picture.id == cur_picture.id %}current{% endif %}">
+              <img title="{{ picture.title }}" 
+                src="{{ picture.serving_url }}&width=80&height=80"/>
             </a>
             <div class="picture_data" style="display:none;">
-              {% if picture.title %}
-              <h1>{{ picture.title }}</h1> 
-              {% endif %}
-               <div class="oneline"></div>
+              <div class="oneline"></div>
               <div class="left_col">
                 {% if picture.author %}
                 <div>{{ picture.author }}</div>
@@ -56,18 +58,17 @@
                 {% if picture.price %}
                 <div>
                   <label>Price: </label>
-                  <span>${{ picture.price }}-----
+                  <span>${{ picture.price }}</span>
+                </div>
                 {% endif %}
 
                 {% if picture.original_available %}
-               
                   <strong>Original Still Available</strong>  
                   <a href="mailto:info@janetwilliamsart.ca">contact Janet</a>
-              </span>
-                </div>
                 {% endif %}
+
                 {% if picture.description %}
-                <div>{{ picture.description }}</div>
+                  <div>{{ picture.description }}</div>
                 {% endif %}
 
                 {% if admin %}
@@ -103,7 +104,7 @@
 {% endblock %}
 
 {% block script %}
-<script src="../../static/js/jquery.ad-gallery.js"></script>
+<script src="/static/js/jquery.ad-gallery.js"></script>
 <script src="/static/js/porfolio.js" type="text/javascript"></script>
 {% endblock %}
 

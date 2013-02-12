@@ -18,12 +18,17 @@ class Gallery(db.Model, BaseModel):
         else:
             return self.pictures.get()
 
+    def delete(self):
+        for picture in self.pictures:
+            picture.delete()
+        db.delete(self.key())
+
 class Picture(db.Model, BaseModel):
     gallery = db.ReferenceProperty(
         Gallery, required=True, collection_name='pictures'
     )
     image = db.BlobProperty()
-    title = db.StringProperty(required=True)
+    title = db.StringProperty()
     # put author here for simplicity, maybe can move to it's own table
     author = db.StringProperty()
     # tag = db.CategoryProperty() add tag table if needed
@@ -32,6 +37,7 @@ class Picture(db.Model, BaseModel):
     media = db.StringProperty() # or change to dropdown ?
     _price_by_cent = db.IntegerProperty()
     original_available = db.BooleanProperty(default=False)
+    slider = db.BooleanProperty(default=False)
     description = db.TextProperty()
     create_date = db.DateTimeProperty(auto_now_add=True)
     update_date = db.DateTimeProperty(auto_now=True)
@@ -59,10 +65,9 @@ class Picture(db.Model, BaseModel):
     def gallery_icon(self):
         return self.gallery.icon_picture.id == self.id
 
-class UploadFile(db.Model, BaseModel):
-    blob = db.BlobProperty()
-    filename = db.StringProperty()
-    type = db.StringProperty()
+    @property
+    def serving_url(self):
+        return '/picture?_id=%s' % self.id
 
 class Content(db.Model, BaseModel):
     name = db.StringProperty(required=True)

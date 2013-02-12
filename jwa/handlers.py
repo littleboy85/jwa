@@ -1,9 +1,10 @@
-import cgi, webapp2, jinja2
-from google.appengine.api import users, images
-from google.appengine.ext import db
-from jwa.models import Gallery, Picture, Content, UploadFile
-from jwa.forms import GalleryForm, PictureForm
+import cgi, webapp2, jinja2, zipfile, StringIO, json, poster, urllib
+from google.appengine.api import users, images, urlfetch
+from google.appengine.ext import db, blobstore
+from google.appengine.ext.webapp import blobstore_handlers
 from jwa import settings
+from jwa.models import Gallery, Picture, Content
+from jwa.forms import GalleryForm, PictureForm, watermark
 
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(settings.TEMPLATE_DIRS)
@@ -30,12 +31,16 @@ class BaseHandler(webapp2.RequestHandler):
 
 class ContentHandler(BaseHandler):
 
-    def get(self):
+    def get_context(self, **kwargs):
         obj = Content.get_by_name(self.content_name, create=True)
-        self.render_to_template(self.template, {
+        return {
             'content': obj,
-            'edit': self.request.get('edit')
-        })
+            'edit': self.request.get('edit'),
+        }
+
+    def get(self):
+        context = self.get_context()
+        self.render_to_template(self.template, context)
 
     @login_required
     def post(self):
@@ -50,9 +55,15 @@ class HomeHandler(ContentHandler):
     content_name = 'about'
     template = 'home.html'
 
-class ContactHandler(BaseHandler):
-    def get(self):
-        self.render_to_template('contact.html')    
+    def get_context(self, **kwargs):
+        context = super(HomeHandler, self).get_context(**kwargs)
+        qs = Picture.all().filter('slider =', True)
+        context['slider_pictures'] = [picture for picture in qs]
+        return context
+
+class ContactHandler(ContentHandler):
+    content_name = 'contact'
+    template = 'contact.html'
         
 class EventHandler(ContentHandler):
     content_name = 'event'
@@ -71,27 +82,41 @@ class LoginHandler(BaseHandler):
         else:
             self.redirect(users.create_logout_url(self.request.uri))
 
-class PictureHandler(BaseHandler):
-    def get(self):
-        id = self.request.get('_id')
-        type = self.request.get('type')
-        picture = Picture.get_by_id(int(id))
-        self.response.headers['Content-Type'] = 'image/jpeg'
-        self.response.write(picture.image)
-
 class GalleryHandler(BaseHandler):
 
     def get(self):
         id = self.request.get('_id')
-        gallery = None
+        picture_id = self.request.get('picture_id')
+        picture = Picture.get_by_id(int(picture_id)) if picture_id else None
+
         if id:
             gallery = Gallery.get_by_id(int(id))
-        if not gallery:
-            gallery = Gallery.all().get()
+        else:
+            if picture is None:
+                gallery = Gallery.all().get()
+            else:
+                gallery = picture.gallery
+        if gallery and (picture is None or picture.gallery.id != gallery.id):
+            picture = gallery.pictures.get()
+
         self.render_to_template('porfolio.html', {
             'gallery_list': Gallery.all(),
             'gallery': gallery,
+            'cur_picture': picture,
         })
+
+class PictureHandler(BaseHandler):
+
+    def get(self):
+        id = self.request.get('_id')
+        width = self.request.get('width')
+        height = self.request.get('height')
+        picture = Picture.get_by_id(int(id))
+        image = images.Image(picture.image)
+        width = int(width) if width else image.width
+        height = int(height) if height else image.height
+        self.response.headers['Content-Type'] = 'image/jpeg'
+        self.response.write(images.resize(picture.image, width, height))
 
 class FormHandler(BaseHandler):
     
@@ -113,12 +138,15 @@ class FormHandler(BaseHandler):
             form = self.form_cls(self.get_initial())
         self.render_to_template(self.template, self.get_context(form=form))
 
+    def is_valid(self, form):
+        obj = form.save()
+        self.redirect(self.get_redirect(obj))
+
     @login_required
     def post(self):
         form = self.form_cls(self.request)
         if form.is_valid():
-            obj = form.save()
-            self.redirect(self.get_redirect(obj))
+            self.is_valid(form)
         else:
             self.render_to_template(self.template, self.get_context(form=form))
 
@@ -126,6 +154,16 @@ class GalleryEditHandler(FormHandler):
     model = Gallery
     form_cls = GalleryForm
     template = 'gallery_form.html'
+
+    def is_valid(self, form):
+        obj = form.save()
+        image_zip = self.request.get('image_zip')
+        with zipfile.ZipFile(StringIO.StringIO(image_zip), 'r') as myzip:
+            for name in myzip.namelist():
+                image = myzip.read(name)
+                picture = Picture(gallery=obj, image=db.Blob(watermark(image)))
+                picture.put()
+        self.redirect(self.get_redirect(obj))
 
     def get_redirect(self, obj):
         return '/porfolio?_id=%s' % obj.id
@@ -144,27 +182,61 @@ class PictureEditHandler(FormHandler):
     def get_redirect(self, obj):
         return '/porfolio?_id=%s&picture_id=%s' % (obj.gallery.id, obj.id)
 
-class FileBrowser(BaseHandler):
-    def get(self): 
-        self.render_to_template('file_browser.html', {
-            'func_num': self.request.get('CKEditorFuncNum'),
-            'file_list': UploadFile.all(),
+class DeleteHandler(BaseHandler):
+
+    def get(self):
+        obj = db.get(self.request.get('key'))
+        self.render_to_template('delete.html', {
+            'obj': obj,
+            'obj_url': self.request.get('obj_url', self.request.referer),
+            'success_url': self.request.get('success_url'),
         })
 
-class FileHandler(BaseHandler):
-    def get(self):
-        pass
+    def post(self):
+        obj = db.get(self.request.get('key'))
+        obj.delete()
+        self.redirect(self.request.get('success_url'))
 
+poster.streaminghttp.register_openers()
+class CKUploadHandler(BaseHandler):
     def post(self):
         f = self.request.POST['upload']
-        content = str(self.request.get('upload'))
-        upload_file = UploadFile(
-            blob=db.Blob(content), 
-            filename=f.filename,
-            type=f.type,
+        value = self.request.get('upload')
+        param = poster.encode.MultipartParam(
+            'file', filename=f.filename, filetype=f.type, fileobj=f.file,
         )
-        upload_file.put()
-        self.response.write('Upload Success')
-        
+        data, headers = poster.encode.multipart_encode([param])
+        self.response = urlfetch.fetch(
+            url=blobstore.create_upload_url('/upload'),
+            payload=''.join(data), method=urlfetch.POST, headers=headers,
+        )
+
+class CKBrowseHandler(BaseHandler):
+    def get(self):
+        func_num = self.request.get('CKEditorFuncNum')
+        self.render_to_template('file_browser.html', {
+            'func_num': func_num,
+            'blob_infos': blobstore.BlobInfo.all(),
+        })
+
+class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
+    def get(self, resource):
+        if resource:
+            resource = str(urllib.unquote(resource))
+            blob_info = blobstore.BlobInfo.get(resource)
+            self.send_blob(blob_info)
+        else:
+            self.response.write(json.dumps({
+                'blob_info': [
+                    {'key': str(blob_info.key())}
+                    for blob_info in blobstore.BlobInfo.all()
+                ]
+            }))
+
+class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
+    def post(self):
+        self.response.write(json.dumps({
+            'key': str(self.get_uploads('file')[0].key())
+        }))
 
         

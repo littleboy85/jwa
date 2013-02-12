@@ -8,4 +8,4 @@ TEMPLATE_DIRS = (
     os.path.join(ROOT_PATH, 'templates'),
 )
 
-
+WATERMARK_PATH = os.path.join(ROOT_PATH, '..', 'lib', 'image', 'watermark.png')

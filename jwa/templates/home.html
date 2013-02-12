@@ -6,57 +6,52 @@
 
 {% block content %}
 <div id="home_container">
-		<div id="example">
-			<div id="slides">
-				<div class="slides_container">
-					<a href=""><img src="../../static/image/slide1.jpg" width="700" height="350" alt="Picture 1"></a>
-					<a href=""><img src="../../static/image/slide2.jpg" width="700" height="350" alt="Picture 2"></a>
-					<a href=""><img src="../../static/image/slide3.jpg" width="700" height="350" alt="Picture 3"></a>
-					<a href=""><img src="../../static/image/slide4.jpg" width="700" height="350" alt="Picture 4"></a>
-					<a href=""><img src="../../static/image/slide5.jpg" width="700" height="350" alt="Picture 5"></a>
-					
-
-				</div>
-				<a href="#" class="prev"><img src="../../static/image/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
-				<a href="#" class="next"><img src="../../static/image/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
-			</div>
-			<img src="../../static/image/frame.png" alt="Example Frame" id="frame">
-		</div>
+  <div id="example">
+    <div id="slides">
+      <div class="slides_container">
+        {% for picture in slider_pictures %}
+        <a href="/porfolio?picture_id={{ picture.id }}">
+          <img src="{{picture.serving_url}}&width=700" 
+            width="700" height="350" alt="{{ picture.title }}"/>
+        </a>
+        {% endfor %}
+      </div>
+      <a href="#" class="prev"><img src="../../static/image/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
+      <a href="#" class="next"><img src="../../static/image/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>
+    </div>
+    <img src="../../static/image/frame.png" alt="Example Frame" id="frame">
+  </div>
 
 
 </div>
 
- <div class="me-container">
-	  <div class="me-title"><img src="../../static/image/aboutjanet.png"></div>
-	  <div class="me-content">
-      {% if edit %}
-      <form action="/home" method="post">
-        <textarea name="content">{{ content.content }}</textarea>
-      </form>
-      {% else %}
-        <div>
-          {{ content.content or '' }}
-        </div>
-        {% if admin %}
-          <div><a class="button"
-            href="/home?edit=edit">Edit</a>
-          </div>
-        {% endif %}
+<div class="me-container">
+  <div class="me-title"><img src="../../static/image/aboutjanet.png"></div>
+  <div class="me-content">
+    {% if edit %}
+    <form action="/home" method="post">
+      <textarea name="content">{{ content.content }}</textarea>
+    </form>
+    {% else %}
+      <div>
+        {{ content.content or '' }}
+      </div>
+      {% if admin %}
+      <div><a class="button"
+          href="/home?edit=edit">Edit</a>
+      </div>
       {% endif %}
-
-	  	  
-	  </div>
-	  
-	  </div>	
-
+    {% endif %}
+  </div>
+</div>	
 
 {% endblock %}
 
 {% block script %}
-<script src="/static/js/slides.min.jquery.js"></script>
+<script src="/static/js/slides.jquery.js"></script>
 <script src="/static/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
-  $(function(){
+  $(document).ready(function(){
     $('#slides').slides({
       preload: true,
       preloadImage: '/static/image/loading.gif',
@@ -66,7 +61,9 @@
     });
 
     $('#nav').spasticNav({select: '.home'});
-    CKEDITOR.replace('content');
+    {% if edit %}
+        CKEDITOR.replace('content');
+    {% endif %}
   });
 </script>
 {% endblock %}
