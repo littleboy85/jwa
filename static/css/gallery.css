@@ -13,6 +13,6 @@
 }
 
 .gallery_form>div>label {
-    min-width: 80px;
+    min-width: 100px;
     display: inline-block;
 }
