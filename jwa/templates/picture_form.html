@@ -16,14 +16,14 @@
 
   <div class="ftitle">
     <label for="title">Title: </label>
-    <input type="text" name="title" value="{{ form.fields.title }}"/>
+    <input type="text" name="title" value="{{ form.fields.title or '' }}"/>
     {% if 'title' in form.errors %}
       <span class="error">   {{ form.errors.title }}</span> 
     {% endif %}
   </div>
   <div class="ftitle">
     <label for="author">Author: </label>
-    <input type="text" name="author" value="{{ form.fields.author }}"/>
+    <input type="text" name="author" value="{{ form.fields.author or '' }}"/>
      {% if 'author' in form.errors %}
       <span class="error">{{   form.errors.author }}</span> 
     {% endif %}
@@ -36,7 +36,7 @@
   <div class="ftitle">
     <label>Use as slider picture: </label>
     <input style="width:20px; height:20px" type="checkbox" name="slider" 
-      value="true" {% if form.fields.gallery_icon %}checked{% endif %}/>
+      value="true" {% if form.fields.slider %}checked{% endif %}/>
   </div>
   <!--
   <div>
@@ -49,7 +49,7 @@
   -->
   <div class="ftitle">
     <label>Media: </label>
-    <input type="text" name="media" value="{{ form.fields.media }}"/>
+    <input type="text" name="media" value="{{ form.fields.media or '' }}"/>
   </div>
   <div class="ftitle">
     <label>Price: </label>
@@ -66,7 +66,7 @@
   <div class="ftitle">
     <label for="description">Description: </label>
     <textarea name="description" cols="40" rows="5"
-      >{{ form.fields.description }}</textarea>
+      >{{ form.fields.description or '' }}</textarea>
   </div>
 
   <div class="ftitle">

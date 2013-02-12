@@ -1,9 +1,10 @@
-import cgi, webapp2, jinja2
-from google.appengine.api import users, images
-from google.appengine.ext import db
-from jwa.models import Gallery, Picture, Content, UploadFile
-from jwa.forms import GalleryForm, PictureForm
+import cgi, webapp2, jinja2, zipfile, StringIO, json, poster, urllib
+from google.appengine.api import users, images, urlfetch
+from google.appengine.ext import db, blobstore
+from google.appengine.ext.webapp import blobstore_handlers
 from jwa import settings
+from jwa.models import Gallery, Picture, Content
+from jwa.forms import GalleryForm, PictureForm, watermark
 
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(settings.TEMPLATE_DIRS)
@@ -137,12 +138,15 @@ class FormHandler(BaseHandler):
             form = self.form_cls(self.get_initial())
         self.render_to_template(self.template, self.get_context(form=form))
 
+    def is_valid(self, form):
+        obj = form.save()
+        self.redirect(self.get_redirect(obj))
+
     @login_required
     def post(self):
         form = self.form_cls(self.request)
         if form.is_valid():
-            obj = form.save()
-            self.redirect(self.get_redirect(obj))
+            self.is_valid(form)
         else:
             self.render_to_template(self.template, self.get_context(form=form))
 
@@ -150,6 +154,16 @@ class GalleryEditHandler(FormHandler):
     model = Gallery
     form_cls = GalleryForm
     template = 'gallery_form.html'
+
+    def is_valid(self, form):
+        obj = form.save()
+        image_zip = self.request.get('image_zip')
+        with zipfile.ZipFile(StringIO.StringIO(image_zip), 'r') as myzip:
+            for name in myzip.namelist():
+                image = myzip.read(name)
+                picture = Picture(gallery=obj, image=db.Blob(watermark(image)))
+                picture.put()
+        self.redirect(self.get_redirect(obj))
 
     def get_redirect(self, obj):
         return '/porfolio?_id=%s' % obj.id
@@ -183,27 +197,46 @@ class DeleteHandler(BaseHandler):
         obj.delete()
         self.redirect(self.request.get('success_url'))
 
-class FileBrowser(BaseHandler):
-    def get(self): 
-        self.render_to_template('file_browser.html', {
-            'func_num': self.request.get('CKEditorFuncNum'),
-            'file_list': UploadFile.all(),
-        })
-
-class FileHandler(BaseHandler):
-    def get(self):
-        pass
-
+poster.streaminghttp.register_openers()
+class CKUploadHandler(BaseHandler):
     def post(self):
         f = self.request.POST['upload']
-        content = str(self.request.get('upload'))
-        upload_file = UploadFile(
-            blob=db.Blob(content), 
-            filename=f.filename,
-            type=f.type,
+        value = self.request.get('upload')
+        param = poster.encode.MultipartParam(
+            'file', filename=f.filename, filetype=f.type, fileobj=f.file,
         )
-        upload_file.put()
-        self.response.write('Upload Success')
-        
+        data, headers = poster.encode.multipart_encode([param])
+        self.response = urlfetch.fetch(
+            url=blobstore.create_upload_url('/upload'),
+            payload=''.join(data), method=urlfetch.POST, headers=headers,
+        )
+
+class CKBrowseHandler(BaseHandler):
+    def get(self):
+        func_num = self.request.get('CKEditorFuncNum')
+        self.render_to_template('file_browser.html', {
+            'func_num': func_num,
+            'blob_infos': blobstore.BlobInfo.all(),
+        })
+
+class ServeHandler(blobstore_handlers.BlobstoreDownloadHandler):
+    def get(self, resource):
+        if resource:
+            resource = str(urllib.unquote(resource))
+            blob_info = blobstore.BlobInfo.get(resource)
+            self.send_blob(blob_info)
+        else:
+            self.response.write(json.dumps({
+                'blob_info': [
+                    {'key': str(blob_info.key())}
+                    for blob_info in blobstore.BlobInfo.all()
+                ]
+            }))
+
+class UploadHandler(blobstore_handlers.BlobstoreUploadHandler):
+    def post(self):
+        self.response.write(json.dumps({
+            'key': str(self.get_uploads('file')[0].key())
+        }))
 
         

@@ -8,15 +8,20 @@
 {% block content %}
 <div id="gallery_content">
   <h2>this is content in each page(this one is for create gallery)</h2>
-  <form action="" method="post" class="gallery_form">
+  <form action="" method="post" enctype="multipart/form-data" 
+    class="gallery_form">
     <div>
-      <label for="title">Title</label>
+      <label for="title">Title: </label>
       <input type="text" name="title" value="{{ form.fields.title }}"/>
     </div>
     <div>
-      <label for="description">Description</label>
+      <label for="description">Description: </label>
       <textarea name="description" cols="40" rows="10"
         >{{ form.fields.description }}</textarea>
+    </div>
+    <div>
+      <label for="image_zip">Pictures Zip: </label>
+      <input type="file" name="image_zip" value="{{ form.fields.image_zip }}"/>
     </div>
     {% if form.instance %}
       <input type="hidden" name="_id" value="{{ form.instance.id }}"/>

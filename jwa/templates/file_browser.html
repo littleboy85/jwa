@@ -2,14 +2,33 @@
 <head>
   <meta charset="utf-8"/>
   <title>File Browser</title>
+  <style type="text/css" media="screen">
+    .file_browser {
+      display: inline-block;
+    }
+  </style>
 </head>
 <body>
-  <ul>
-    {% for f in file_list %}
-    <li>{{ f.id }}</li>
-    {% endfor %}
-  </ul>
-  <div id="testOnly"></div>
-  {{ func_num }}
+  <div class="file_browser">
+    <ul>
+      {% for blob_info in blob_infos %}
+      <li>
+        <a href="/serve/{{ blob_info.key() }}">{{ blob_info.filename }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <script src="/static/js/jquery-1.8.3.js"></script>
+  <script type="text/javascript">
+    window.resizeTo(800, 600);
+    $(document).ready(function(){
+      var ckeditor = window.opener.CKEDITOR;
+      $('a').click(function(){
+        ckeditor.tools.callFunction({{ func_num }}, $(this).attr('href'));
+        window.close();
+        return false;
+      });
+    });
+  </script>
 </body>
 </html>

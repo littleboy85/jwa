@@ -28,7 +28,7 @@ class Picture(db.Model, BaseModel):
         Gallery, required=True, collection_name='pictures'
     )
     image = db.BlobProperty()
-    title = db.StringProperty(required=True)
+    title = db.StringProperty()
     # put author here for simplicity, maybe can move to it's own table
     author = db.StringProperty()
     # tag = db.CategoryProperty() add tag table if needed
@@ -68,11 +68,6 @@ class Picture(db.Model, BaseModel):
     @property
     def serving_url(self):
         return '/picture?_id=%s' % self.id
-
-class UploadFile(db.Model, BaseModel):
-    blob = db.BlobProperty()
-    filename = db.StringProperty()
-    type = db.StringProperty()
 
 class Content(db.Model, BaseModel):
     name = db.StringProperty(required=True)

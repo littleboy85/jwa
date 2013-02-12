@@ -12,7 +12,10 @@ routes = [
     ('/contact', handlers.ContactHandler),
     ('/price', handlers.PriceHandler),
     ('/admin', handlers.LoginHandler),
-    ('/file', handlers.FileHandler),
+    ('/upload', handlers.UploadHandler),
+    ('/serve/([^/]+)?', handlers.ServeHandler),
+    ('/ckbrowse', handlers.CKBrowseHandler),
+    ('/ckupload', handlers.CKUploadHandler),
 ]
 
 if settings.DEBUG:

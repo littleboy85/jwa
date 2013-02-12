@@ -27,8 +27,8 @@ CKEDITOR.editorConfig = function(config) {
   // Remove some buttons, provided by the standard plugins, which we don't
   // need to have in the Standard(s) toolbar.
   config.removeButtons = 'Subscript,Superscript,Preview,NewPage,Print';
-  config.filebrowserBrowseUrl = '/file';
-  config.filebrowserUploadUrl = '/file';
+  config.filebrowserBrowseUrl = '/ckbrowse';
+  config.filebrowserUploadUrl = '/ckupload';
   config.extraPlugins = 'filebrowser';
 };
 
