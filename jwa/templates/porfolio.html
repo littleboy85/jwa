@@ -12,7 +12,7 @@
       {% for gallery in gallery_list %}
       <li class="nav_thumb">
       <a href="/porfolio?_id={{ gallery.id }}">
-        <img src="/picture?_id={{ gallery.icon.id }}&type=thumb" 
+        <img src="{{ gallery.icon.serving_url }}&width=160&height=160" 
             alt="image not load correctly" class="icon"
           />
           <div class="nav-title">{{ gallery.title }}</div>
@@ -36,10 +36,10 @@
         <ul class="ad-thumb-list">
         {% for picture in gallery.pictures %}
           <li class="picture">
-            <a href="/picture?_id={{ picture.id }}" 
+            <a href="{{ picture.serving_url }}" 
               class="image {% if picture.id == cur_picture.id %}current{% endif %}">
               <img title="{{ picture.title }}" 
-                src="/picture?_id={{ picture.id }}&type=thumb"/>
+                src="{{ picture.serving_url }}&width=80&height=80"/>
             </a>
             <div class="picture_data" style="display:none;">
               <div class="oneline"></div>

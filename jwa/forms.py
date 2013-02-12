@@ -1,5 +1,7 @@
-from jwa.models import Gallery, Picture
 from google.appengine.ext import db
+from google.appengine.api import images
+from jwa import settings
+from jwa.models import Gallery, Picture
 
 class Form(object):
     def __init__(self, data={}):
@@ -88,7 +90,26 @@ class PictureForm(Form):
         if len(image) == 0:
             self.errors['image'] = 'Please upload an image'
         else:
-            self.cleaned_data['image'] = db.Blob(str(image))
+            image = images.Image(images.resize(str(image), 800, 600))
+            f = open(settings.WATERMARK_PATH, 'rb')
+            watermark = images.Image(
+                images.resize(f.read(), image.width, image.height)
+            )
+            f.close()
+            
+            image_with_watermark = images.composite(
+                [
+                    (image, 0, 0, 1.0, images.TOP_LEFT,), 
+                    (
+                        watermark, 
+                        (image.width - watermark.width)/2, 
+                        (image.height- watermark.height)/2, 
+                        0.2, images.TOP_LEFT,
+                    ),
+                ],
+                image.width, image.height, 0, images.JPEG,
+            )
+            self.cleaned_data['image'] = db.Blob(image_with_watermark)
 
         return len(self.errors) == 0
 

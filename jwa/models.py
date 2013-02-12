@@ -65,6 +65,10 @@ class Picture(db.Model, BaseModel):
     def gallery_icon(self):
         return self.gallery.icon_picture.id == self.id
 
+    @property
+    def serving_url(self):
+        return '/picture?_id=%s' % self.id
+
 class UploadFile(db.Model, BaseModel):
     blob = db.BlobProperty()
     filename = db.StringProperty()

@@ -57,16 +57,7 @@ class HomeHandler(ContentHandler):
     def get_context(self, **kwargs):
         context = super(HomeHandler, self).get_context(**kwargs)
         qs = Picture.all().filter('slider =', True)
-        ps = [picture for picture in qs]
-        import logging
-        for p in ps:
-            logging.info(p.id)
-            logging.info(str(p.id))
-        for p in ps:
-            logging.info(p.id)
-            logging.info(str(p.id))
-
-        context['slider_pictures'] = ps
+        context['slider_pictures'] = [picture for picture in qs]
         return context
 
 class ContactHandler(ContentHandler):
@@ -90,20 +81,13 @@ class LoginHandler(BaseHandler):
         else:
             self.redirect(users.create_logout_url(self.request.uri))
 
-class PictureHandler(BaseHandler):
-    def get(self):
-        id = self.request.get('_id')
-        type = self.request.get('type')
-        picture = Picture.get_by_id(int(id))
-        self.response.headers['Content-Type'] = 'image/jpeg'
-        self.response.write(picture.image)
-
 class GalleryHandler(BaseHandler):
 
     def get(self):
         id = self.request.get('_id')
         picture_id = self.request.get('picture_id')
         picture = Picture.get_by_id(int(picture_id)) if picture_id else None
+
         if id:
             gallery = Gallery.get_by_id(int(id))
         else:
@@ -119,6 +103,19 @@ class GalleryHandler(BaseHandler):
             'gallery': gallery,
             'cur_picture': picture,
         })
+
+class PictureHandler(BaseHandler):
+
+    def get(self):
+        id = self.request.get('_id')
+        width = self.request.get('width')
+        height = self.request.get('height')
+        picture = Picture.get_by_id(int(id))
+        image = images.Image(picture.image)
+        width = int(width) if width else image.width
+        height = int(height) if height else image.height
+        self.response.headers['Content-Type'] = 'image/jpeg'
+        self.response.write(images.resize(picture.image, width, height))
 
 class FormHandler(BaseHandler):
     
