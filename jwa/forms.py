@@ -77,10 +77,6 @@ class PictureForm(Form):
             self.errors['gallery'] = 'Can not find the porfolio'
         del self.cleaned_data['gallery_id']
 
-        title = self.cleaned_data.get('title')
-        if not title:
-            self.errors['title'] = 'This field is required'
-
         price = self.cleaned_data.get('price')
         if price:
             try:

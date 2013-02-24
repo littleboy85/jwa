@@ -38,7 +38,7 @@
           <li class="picture">
             <a href="{{ picture.serving_url }}" 
               class="image {% if picture.id == cur_picture.id %}current{% endif %}">
-              <img title="{{ picture.title }}" 
+              <img title="{{ picture.title or '' }}" 
                 src="{{ picture.serving_url }}&width=80&height=80"/>
             </a>
             <div class="picture_data" style="display:none;">

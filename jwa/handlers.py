@@ -88,19 +88,20 @@ class GalleryHandler(BaseHandler):
         id = self.request.get('_id')
         picture_id = self.request.get('picture_id')
         picture = Picture.get_by_id(int(picture_id)) if picture_id else None
+        gallery_list = Gallery.all().order('-create_date')
 
         if id:
             gallery = Gallery.get_by_id(int(id))
         else:
             if picture is None:
-                gallery = Gallery.all().get()
+                gallery = gallery_list.get()
             else:
                 gallery = picture.gallery
         if gallery and (picture is None or picture.gallery.id != gallery.id):
             picture = gallery.pictures.get()
 
         self.render_to_template('porfolio.html', {
-            'gallery_list': Gallery.all(),
+            'gallery_list': gallery_list,
             'gallery': gallery,
             'cur_picture': picture,
         })
@@ -158,11 +159,14 @@ class GalleryEditHandler(FormHandler):
     def is_valid(self, form):
         obj = form.save()
         image_zip = self.request.get('image_zip')
-        with zipfile.ZipFile(StringIO.StringIO(image_zip), 'r') as myzip:
+        try:
+            myzip = zipfile.ZipFile(StringIO.StringIO(image_zip), 'r')
             for name in myzip.namelist():
                 image = myzip.read(name)
                 picture = Picture(gallery=obj, image=db.Blob(watermark(image)))
                 picture.put()
+        except zipfile.BadZipfile:
+            pass
         self.redirect(self.get_redirect(obj))
 
     def get_redirect(self, obj):

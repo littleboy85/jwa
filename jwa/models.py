@@ -10,6 +10,7 @@ class Gallery(db.Model, BaseModel):
     title = db.StringProperty(required=True)
     description = db.TextProperty()
     icon_picture = db.ReferenceProperty()
+    create_date = db.DateTimeProperty(auto_now_add=True)
 
     @property
     def icon(self):
