@@ -5,4 +5,5 @@
 
 #porfolio_nav_container .ad-nav {
     overflow-y: auto;
+    overflow-x: hidden;
 }

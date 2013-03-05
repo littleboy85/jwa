@@ -2,6 +2,17 @@ $(function() {
   var $porfolio = $('#showporfolio_container');
   var $adnav = $('#porfolio_nav_container .ad-nav');
 
+  function adjustAdNavHeight() {
+    $adnav.height($porfolio.height());
+    console.log($adnav.get(0).scrollHeight);
+    console.log($adnav.height());
+    if ($adnav.get(0).scrollHeight > $adnav.height()) {
+      $adnav.css({margin: '0 0 0 13px'});   
+    }else{
+      $adnav.css({margin: '0 auto'});   
+    }
+  }
+
   $('#nav').spasticNav({select: '.porfolio'});
 
   $('.ad-thumb-list>li.picture').each(function(){
@@ -30,11 +41,12 @@ $(function() {
       displayDescription: function(image) {
         $('.ad-image-description').html(image.desc);
         $('.ad-title').text(image.title || '');
-        $adnav.height($porfolio.height());
+        adjustAdNavHeight();
       }
     }
   });
 
-  $adnav.height($porfolio.height());
+  adjustAdNavHeight();
+
 });
 
