@@ -22,7 +22,6 @@
     </ul>
   </div><!--end ad-nav-->
 </div>
-
 <div id="showporfolio_container">
   <div class="gallery-description">
     {{ gallery.description or '' }}
@@ -47,18 +46,18 @@
                 {% if picture.author %}
                 <div>{{ picture.author }}</div>
                 {% endif %}
-                {% if picture.width %}
-                <div>{{ picture.width }}'' x {{picture.height}}''</div>
-                {% endif %}
                 {% if picture.media %}
                 <div>{{ picture.media }}</div>
+                {% endif %}
+                {% if picture.size %}
+                <div>{{ picture.size }}</div>
                 {% endif %}
               </div>
               <div class="right_col">
                 {% if picture.price %}
                 <div>
                   <label>Price: </label>
-                  <span>${{ picture.price }}</span>
+                  <span>${{ picture.format_price}}</span>
                 </div>
                 {% endif %}
 

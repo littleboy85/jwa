@@ -8,11 +8,11 @@
 <div class="outer-container">
   <div class="container">
     <div class="title">
-      <img src="/static/image/upcomingevents.png"/>
+      <img src="/static/image/commitionedwork.png"/>
     </div> 
     <div class="content">
       {% if edit %}
-      <form action="/event" method="post">
+      <form action="/commitionwork" method="post">
         <textarea name="content">{{ content.content }}</textarea>
       </form>
       {% else %}
@@ -20,9 +20,7 @@
           {{ content.content or '' }}
         </div>
         {% if admin %}
-          <div><a class="button"
-            href="/event?edit=edit">Edit</a>
-          </div>
+          <div><a class="button" href="/commitionwork?edit=edit">Edit</a></div>
         {% endif %}
       {% endif %}
     </div>
@@ -35,7 +33,7 @@
 <script src="/static/js/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
   $(function(){
-    $('#nav').spasticNav({select: '.events'});
+    $('#nav').spasticNav({select: '.commitionwork'});
     CKEDITOR.replace('content');
   });
 </script>

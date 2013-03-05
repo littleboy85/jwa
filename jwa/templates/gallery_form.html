@@ -15,6 +15,11 @@
       <input type="text" name="title" value="{{ form.fields.title }}"/>
     </div>
     <div>
+      <label for="create_date">Create Date: </label>
+      <input type="text" name="create_date" 
+        value="{{ form.format_create_date() }}"/>
+    </div>
+    <div>
       <label for="description">Description: </label>
       <textarea name="description" cols="40" rows="10"
         >{{ form.fields.description }}</textarea>

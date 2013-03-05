@@ -1,3 +1,4 @@
+from datetime import datetime
 from google.appengine.ext import db
 from google.appengine.api import images
 from jwa import settings
@@ -47,7 +48,14 @@ class Form(object):
 
 class GalleryForm(Form):
     model = Gallery
-    field_names = ['title', 'description'] 
+    field_names = ['title', 'create_date', 'description'] 
+
+
+    def format_create_date(self):
+        if self.fields.has_key('create_date'):
+            return self.fields['create_date'].strftime('%Y-%m-%d')
+        else:
+            return ''
 
     def is_valid(self):
         is_valid = super(GalleryForm, self).is_valid()
@@ -55,15 +63,25 @@ class GalleryForm(Form):
         title = self.cleaned_data.get('title')
         if not title:
             self.errors['title'] = 'This field is required'
-
         return len(self.errors) == 0
+
+    def save(self):
+        if self.cleaned_data.has_key('create_date'):
+            create_date = self.cleaned_data['create_date']
+            self.cleaned_data['create_date'] = \
+                    datetime.strptime(create_date, '%Y-%m-%d')
+            # don't update, if create_date have same date as orig create_date 
+            if hasattr(self, 'instance') and \
+               create_date == self.instance.create_date.strftime('%Y-%m-%d'):
+                del self.cleaned_data['create_date']
+        return super(GalleryForm, self).save()
 
 class PictureForm(Form):
     model = Picture
     field_names = [
         'title', 'author', 'gallery_id', 'image', 'gallery_icon', 
         'media', 'price', 'slider', 'original_available', 
-        'description', # 'width', 'height', 
+        'description', 'size', # 'width', 'height', 
     ] 
 
     def is_valid(self):
@@ -77,14 +95,16 @@ class PictureForm(Form):
             self.errors['gallery'] = 'Can not find the porfolio'
         del self.cleaned_data['gallery_id']
 
-        price = self.cleaned_data.get('price')
-        if price:
-            try:
-                self.cleaned_data['price'] = float(price)
-            except ValueError:
-                self.errors['price'] = 'Price is not valid'
-        else:
-            del self.cleaned_data['price']
+        if self.cleaned_data.has_key('price'):
+            price = self.cleaned_data['price'] 
+            if price == '':
+                self.cleaned_data['_price_by_cent'] = None
+                del self.cleaned_data['price']
+            else:
+                try:
+                    self.cleaned_data['price'] = float(price)
+                except ValueError:
+                    self.errors['price'] = 'Price is not valid'
 
         self.cleaned_data['original_available'] = bool(
             self.cleaned_data['original_available']

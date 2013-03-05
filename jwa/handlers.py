@@ -1,4 +1,4 @@
-import cgi, webapp2, jinja2, zipfile, StringIO, json, poster, urllib
+import cgi, webapp2, jinja2, zipfile, StringIO, json, poster, urllib, datetime
 from google.appengine.api import users, images, urlfetch
 from google.appengine.ext import db, blobstore
 from google.appengine.ext.webapp import blobstore_handlers
@@ -25,6 +25,7 @@ class BaseHandler(webapp2.RequestHandler):
     def render_to_template(self, template_name, context={}, status=200):
         template = jinja_env.get_template(template_name)
         context['admin'] = users.is_current_user_admin()
+        context['now'] = datetime.datetime.now()
         context['logout_url'] = users.create_logout_url(self.request.uri)
         self.response.write(template.render(context))
         self.response.set_status(status)
@@ -72,6 +73,11 @@ class EventHandler(ContentHandler):
 class PriceHandler(ContentHandler):
     content_name = 'price-and-ordering'
     template = 'price.html'
+
+class CommitionworkHandler(ContentHandler):
+    content_name = 'commitionwork'
+    template = 'commitionwork.html'
+
 
 class LoginHandler(BaseHandler):
 

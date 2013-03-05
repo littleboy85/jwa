@@ -1,4 +1,7 @@
 $(function() {
+  var $porfolio = $('#showporfolio_container');
+  var $adnav = $('#porfolio_nav_container .ad-nav');
+
   $('#nav').spasticNav({select: '.porfolio'});
 
   $('.ad-thumb-list>li.picture').each(function(){
@@ -26,9 +29,12 @@ $(function() {
     hooks: {
       displayDescription: function(image) {
         $('.ad-image-description').html(image.desc);
-        $('.ad-title').text(image.title);
+        $('.ad-title').text(image.title || '');
+        $adnav.height($porfolio.height());
       }
     }
   });
+
+  $adnav.height($porfolio.height());
 });
 

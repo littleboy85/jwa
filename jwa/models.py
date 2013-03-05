@@ -30,12 +30,12 @@ class Picture(db.Model, BaseModel):
     )
     image = db.BlobProperty()
     title = db.StringProperty()
-    # put author here for simplicity, maybe can move to it's own table
     author = db.StringProperty()
     # tag = db.CategoryProperty() add tag table if needed
     width = db.IntegerProperty()
     height = db.IntegerProperty()
-    media = db.StringProperty() # or change to dropdown ?
+    media = db.StringProperty()
+    size = db.StringProperty()
     _price_by_cent = db.IntegerProperty()
     original_available = db.BooleanProperty(default=False)
     slider = db.BooleanProperty(default=False)
@@ -57,6 +57,10 @@ class Picture(db.Model, BaseModel):
     @price.setter
     def price(self, value):
         self._price_by_cent = int(value * 100)
+
+    @property
+    def format_price(self):
+        return '%.2f' % self.price
 
     @property
     def gallery_id(self):

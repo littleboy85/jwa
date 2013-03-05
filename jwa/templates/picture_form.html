@@ -18,13 +18,13 @@
     <label for="title">Title: </label>
     <input type="text" name="title" value="{{ form.fields.title or '' }}"/>
     {% if 'title' in form.errors %}
-      <span class="error">   {{ form.errors.title }}</span> 
+      <span class="error">{{ form.errors.title }}</span> 
     {% endif %}
   </div>
   <div class="ftitle">
     <label for="author">Author: </label>
     <input type="text" name="author" value="{{ form.fields.author or '' }}"/>
-     {% if 'author' in form.errors %}
+    {% if 'author' in form.errors %}
       <span class="error">{{   form.errors.author }}</span> 
     {% endif %}
   </div>
@@ -38,15 +38,10 @@
     <input style="width:20px; height:20px" type="checkbox" name="slider" 
       value="true" {% if form.fields.slider %}checked{% endif %}/>
   </div>
-  <!--
-  <div>
-    <label for="width">Width: </label>
-    <input type="text" name="width" value="{{ form.fields.width }}"/>
-    <label for="height">Height: </label>
-    <input type="text" name="height" readonly="true"
-      value="{{ form.fields.height }}"/>
+  <div class="ftitle">
+    <label>Size: </label>
+    <input type="text" name="size" value="{{ form.fields.size or '' }}"/>
   </div>
-  -->
   <div class="ftitle">
     <label>Media: </label>
     <input type="text" name="media" value="{{ form.fields.media or '' }}"/>
@@ -54,7 +49,7 @@
   <div class="ftitle">
     <label>Price: </label>
     <input type="text" name="price" value="{{ form.fields.price or '' }}"/>
-     {% if 'price' in form.errors %}
+    {% if 'price' in form.errors %}
       <span class="error">{{ form.errors.price }}</span> 
     {% endif %}
   </div>
@@ -70,12 +65,8 @@
   </div>
 
   <div class="ftitle">
-    
     <label for="image">Image: </label>
     {% if form.instance and form.instance.image %}
-    {% if 'image' in form.errors %}
-      <div span="error">{{ form.errors.image }}</span> 
-    {% endif %}
       <div class="ftitle">
         <div>
           <label>Currently: </label>
@@ -88,6 +79,9 @@
       </div>
     {% else %}
       <input style="width:180px; height:60px" type="file" name="image"/>
+    {% endif %}
+    {% if 'image' in form.errors %}
+      <span class="error">{{ form.errors.image }}</span> 
     {% endif %}
   </div>
   <input type="hidden" name="gallery_id" value="{{ form.fields.gallery_id }}"/>

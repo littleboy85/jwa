@@ -11,6 +11,7 @@ routes = [
     ('/event', handlers.EventHandler),
     ('/contact', handlers.ContactHandler),
     ('/price', handlers.PriceHandler),
+    ('/commitionwork', handlers.CommitionworkHandler),
     ('/admin', handlers.LoginHandler),
     ('/upload', handlers.UploadHandler),
     ('/serve/([^/]+)?', handlers.ServeHandler),
